@@ -1,0 +1,79 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("CUSTOMER") // CUSTOMER, OWNER, ADMIN
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  cars     Car[]     @relation("OwnerCars")
+  bookings Booking[] @relation("CustomerBookings")
+}
+
+model Car {
+  id           String  @id @default(uuid())
+  brand        String
+  model        String
+  year         Int
+  pricePerDay  Float
+  kilometers   Int
+  rating       Float   @default(0)
+  image        String
+  availability Boolean @default(true)
+  terrain      String  @default("City") // City, Offroad, Highway
+  passengers   Int     @default(4)
+  description  String?
+
+  ownerId String
+  owner   User   @relation("OwnerCars", fields: [ownerId], references: [id])
+
+  bookings      Booking[]
+  damageReports DamageReport[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Booking {
+  id          String   @id @default(uuid())
+  startDate   DateTime
+  endDate     DateTime
+  totalCost   Float
+  status      String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED, VERIFYING_DOCS
+  paymentPaid Boolean  @default(false)
+
+  customerId String
+  customer   User   @relation("CustomerBookings", fields: [customerId], references: [id])
+
+  carId String
+  car   Car    @relation(fields: [carId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DamageReport {
+  id          String   @id @default(uuid())
+  description String
+  imageUrl    String?
+  date        DateTime @default(now())
+
+  carId String
+  car   Car    @relation(fields: [carId], references: [id])
+}
