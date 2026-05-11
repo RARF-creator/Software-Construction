@@ -23,7 +23,7 @@ function CarCard({ car, index }: { car: any, index: number }) {
       transition={{ delay: index * 0.1 }}
       className="group bg-surface rounded-2xl overflow-hidden border border-border hover:border-white/20 transition-all hover:shadow-[0_0_40px_rgba(255,255,255,0.05)]"
     >
-      {/* Image Container */}
+      {}
       <div className="relative h-64 overflow-hidden">
         <Image 
           src={car.image} 
@@ -36,7 +36,7 @@ function CarCard({ car, index }: { car: any, index: number }) {
         </div>
       </div>
 
-      {/* Card Content */}
+      {}
       <div className="p-6">
         <div className="flex justify-between items-start mb-4">
           <div>
@@ -51,7 +51,7 @@ function CarCard({ car, index }: { car: any, index: number }) {
 
         <div className="w-full h-px bg-white/5 my-6" />
 
-        {/* Purchase/Rent Toggles */}
+        {}
         <div className="grid grid-cols-3 gap-2 mb-6">
           <button onClick={() => setMode("RENT")} className={`py-2 rounded-lg text-xs font-semibold tracking-wider transition-all active:scale-95 ${mode === "RENT" ? "bg-accent text-white" : "bg-white/5 hover:bg-white/10"}`}>RENT</button>
           <button onClick={() => setMode("LEASE")} className={`py-2 rounded-lg text-xs font-semibold tracking-wider transition-all active:scale-95 ${mode === "LEASE" ? "bg-accent text-white" : "bg-white/5 hover:bg-white/10"}`}>LEASE</button>
@@ -75,7 +75,7 @@ export default function FleetGrid({ initialCars }: { initialCars: any[] }) {
 
   return (
     <>
-      {/* Header Section */}
+      {}
       <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
         <div>
           <h4 className="text-sm md:text-base font-semibold tracking-[0.3em] text-white/40 uppercase mb-4">
@@ -86,7 +86,7 @@ export default function FleetGrid({ initialCars }: { initialCars: any[] }) {
           </h1>
         </div>
 
-        {/* Filters */}
+        {}
         <div className="flex space-x-2 md:space-x-4 bg-white/5 p-2 rounded-full border border-border backdrop-blur-md self-start md:self-auto">
           {["All", "City", "Highway", "Offroad"].map((cat) => (
             <button
@@ -102,7 +102,7 @@ export default function FleetGrid({ initialCars }: { initialCars: any[] }) {
         </div>
       </div>
 
-      {/* Cars Grid */}
+      {}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {filteredCars.map((car, index) => (
           <CarCard key={car.id} car={car} index={index} />

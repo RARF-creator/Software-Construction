@@ -94,7 +94,7 @@ export default function CustomerDashboard() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex-grow w-full">
 
-        {/* Hero Header */}
+        {}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <div>
             <p className="text-accent text-xs font-bold tracking-[0.3em] uppercase mb-3">Bookings Portal</p>
@@ -108,7 +108,7 @@ export default function CustomerDashboard() {
           </Link>
         </div>
 
-        {/* Stats Row */}
+        {}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {[
             { label: "Total Bookings", value: bookings.length, icon: "🗂" },
@@ -129,7 +129,7 @@ export default function CustomerDashboard() {
           ))}
         </div>
 
-        {/* Tabs */}
+        {}
         <div className="flex items-center gap-1 p-1 bg-surface rounded-2xl border border-border w-fit mb-10">
           {(["all", "active", "history"] as const).map(tab => (
             <button
@@ -144,7 +144,7 @@ export default function CustomerDashboard() {
           ))}
         </div>
 
-        {/* Bookings */}
+        {}
         {filtered.length === 0 ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center py-24 bg-white/[0.02] rounded-3xl border border-white/5">
             <p className="text-4xl mb-4">🛣</p>
@@ -164,16 +164,16 @@ export default function CustomerDashboard() {
                   onClick={() => setSelectedBooking(booking)}
                   className="bg-surface rounded-2xl border border-border hover:border-white/20 transition-all cursor-pointer group overflow-hidden relative"
                 >
-                  {/* Coloured status bar */}
+                  {}
                   <div className={`absolute top-0 left-0 right-0 h-0.5 ${booking.status === "CONFIRMED" ? "bg-green-500" : booking.status === "PENDING" ? "bg-accent" : "bg-red-500"}`} />
 
                   <div className="flex gap-5 p-5">
-                    {/* Car Image */}
+                    {}
                     <div className="relative w-28 h-24 rounded-xl overflow-hidden shrink-0 border border-white/5">
                       <Image src={booking.car.image} alt={booking.car.model} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
                     </div>
 
-                    {/* Info */}
+                    {}
                     <div className="flex-grow min-w-0">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <div>
@@ -208,7 +208,7 @@ export default function CustomerDashboard() {
         )}
       </div>
 
-      {/* Booking Detail Drawer */}
+      {}
       <AnimatePresence>
         {selectedBooking && (
           <>

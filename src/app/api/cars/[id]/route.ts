@@ -3,7 +3,7 @@ import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient();
 
-// PATCH /api/cars/[id] — toggle availability or update car
+
 export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }

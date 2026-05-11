@@ -16,10 +16,6 @@ const Prisma = {}
 exports.Prisma = Prisma
 exports.$Enums = {}
 
-/**
- * Prisma Client JS version: 5.22.0
- * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
- */
 Prisma.prismaVersion = {
   client: "5.22.0",
   engine: "605197351a3c8bdd595af2d2a9bc3025bca48ea2"
@@ -57,9 +53,6 @@ In case this error is unexpected for you, please report it in https://pris.ly/pr
 )}
 Prisma.Decimal = Decimal
 
-/**
- * Re-export of sql-template-tag
- */
 Prisma.sql = () => {
   const runtimeName = getRuntime().prettyName;
   throw new Error(`sqltag is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
@@ -82,9 +75,6 @@ In case this error is unexpected for you, please report it in https://pris.ly/pr
 )}
 Prisma.validator = Public.validator
 
-/**
-* Extensions
-*/
 Prisma.getExtensionContext = () => {
   const runtimeName = getRuntime().prettyName;
   throw new Error(`Extensions.getExtensionContext is unable to run in this browser environment, or has been bundled for the browser (running in ${runtimeName}).
@@ -96,9 +86,6 @@ Prisma.defineExtension = () => {
 In case this error is unexpected for you, please report it in https://pris.ly/prisma-prisma-bug-report`,
 )}
 
-/**
- * Shorthand utilities for JSON filtering
- */
 Prisma.DbNull = objectEnumValues.instances.DbNull
 Prisma.JsonNull = objectEnumValues.instances.JsonNull
 Prisma.AnyNull = objectEnumValues.instances.AnyNull
@@ -111,9 +98,6 @@ Prisma.NullTypes = {
 
 
 
-/**
- * Enums
- */
 
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
@@ -186,9 +170,6 @@ exports.Prisma.ModelName = {
   DamageReport: 'DamageReport'
 };
 
-/**
- * This is a stub Prisma Client that will error at runtime if called.
- */
 class PrismaClient {
   constructor() {
     return new Proxy(this, {

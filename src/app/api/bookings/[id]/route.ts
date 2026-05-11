@@ -3,7 +3,7 @@ import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient();
 
-// PATCH /api/bookings/[id] — update booking status
+
 export async function PATCH(
   req: NextRequest,
   { params }: { params: { id: string } }
@@ -28,7 +28,7 @@ export async function PATCH(
   }
 }
 
-// DELETE /api/bookings/[id] — cancel booking
+
 export async function DELETE(
   _req: NextRequest,
   { params }: { params: { id: string } }

@@ -3,7 +3,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 
 export type CartItem = {
-  id: string; // unique ID for cart item
+  id: string; 
   carId: string;
   carName: string;
   carBrand: string;
@@ -30,7 +30,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [isMounted, setIsMounted] = useState(false);
 
-  // Load from local storage on mount
+  
   useEffect(() => {
     setIsMounted(true);
     const saved = localStorage.getItem("luxury_cart");
@@ -39,7 +39,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     }
   }, []);
 
-  // Save to local storage on change
+  
   useEffect(() => {
     if (isMounted) {
       localStorage.setItem("luxury_cart", JSON.stringify(items));

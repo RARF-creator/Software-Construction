@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 export default function PremiumFill() {
   return (
     <div className="relative w-full overflow-hidden border-t border-white/5 bg-background mt-12 md:mt-24">
-      {/* Subtle Grid Background */}
+      {}
       <div 
         className="absolute inset-0 z-0 opacity-20"
         style={{
@@ -15,11 +15,11 @@ export default function PremiumFill() {
         }}
       />
 
-      {/* Glow Orbs */}
+      {}
       <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-[radial-gradient(circle,_rgba(99,102,241,0.05)_0%,_transparent_60%)] -translate-y-1/2 pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 w-96 h-96 bg-[radial-gradient(circle,_rgba(255,255,255,0.03)_0%,_transparent_60%)] -translate-y-1/2 pointer-events-none" />
 
-      {/* Features Block */}
+      {}
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
           <div className="space-y-4">

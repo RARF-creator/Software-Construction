@@ -7,26 +7,26 @@ interface ScrollytellingBeatsProps {
 }
 
 export default function ScrollytellingBeats({ scrollProgress }: ScrollytellingBeatsProps) {
-  // Beat A: 0% - 20%
+  
   const opacityA = useTransform(scrollProgress, [0, 0.02, 0.18, 0.2], [0, 1, 1, 0]);
   const yA = useTransform(scrollProgress, [0, 0.02, 0.18, 0.2], [20, 0, 0, -20]);
 
-  // Beat B: 25% - 45%
+  
   const opacityB = useTransform(scrollProgress, [0.25, 0.27, 0.43, 0.45], [0, 1, 1, 0]);
   const yB = useTransform(scrollProgress, [0.25, 0.27, 0.43, 0.45], [20, 0, 0, -20]);
 
-  // Beat C: 50% - 75%
+  
   const opacityC = useTransform(scrollProgress, [0.5, 0.525, 0.725, 0.75], [0, 1, 1, 0]);
   const yC = useTransform(scrollProgress, [0.5, 0.525, 0.725, 0.75], [20, 0, 0, -20]);
 
-  // Beat D: 80% - 100%
-  const opacityD = useTransform(scrollProgress, [0.8, 0.82, 1.0, 1.0], [0, 1, 1, 1]); // Holds at end
+  
+  const opacityD = useTransform(scrollProgress, [0.8, 0.82, 1.0, 1.0], [0, 1, 1, 1]); 
   const yD = useTransform(scrollProgress, [0.8, 0.82, 1.0, 1.0], [20, 0, 0, 0]);
 
   return (
     <div className="absolute inset-0 pointer-events-none overflow-hidden">
 
-      {/* Beat A */}
+      {}
       <motion.div 
         style={{ opacity: opacityA, y: yA }}
         className="absolute inset-0 flex flex-col items-center justify-center text-center px-6"
@@ -39,7 +39,7 @@ export default function ScrollytellingBeats({ scrollProgress }: ScrollytellingBe
         </p>
       </motion.div>
 
-      {/* Beat B */}
+      {}
       <motion.div 
         style={{ opacity: opacityB, y: yB }}
         className="absolute inset-0 flex flex-col justify-center items-start px-8 md:px-24"
@@ -52,7 +52,7 @@ export default function ScrollytellingBeats({ scrollProgress }: ScrollytellingBe
         </p>
       </motion.div>
 
-      {/* Beat C */}
+      {}
       <motion.div 
         style={{ opacity: opacityC, y: yC }}
         className="absolute inset-0 flex flex-col justify-center items-end text-right px-8 md:px-24"
@@ -65,7 +65,7 @@ export default function ScrollytellingBeats({ scrollProgress }: ScrollytellingBe
         </p>
       </motion.div>
 
-      {/* Beat D (Empty to let the final frame shine) */}
+      {}
       <motion.div 
         style={{ opacity: opacityD, y: yD }}
         className="absolute inset-0 flex flex-col items-center justify-end pb-32 px-6"

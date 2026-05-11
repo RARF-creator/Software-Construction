@@ -20,7 +20,7 @@ export default function CartPage() {
 
   return (
     <main className="min-h-screen bg-background text-white pt-32 pb-0 relative overflow-hidden flex flex-col">
-      {/* Background Glow */}
+      {}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle,_rgba(255,255,255,0.05)_0%,_transparent_60%)] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex-grow w-full">
@@ -39,17 +39,17 @@ export default function CartPage() {
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             
-            {/* Cart Items */}
+            {}
             <div className="lg:col-span-2 space-y-6">
               {items.map((item) => (
                 <div key={item.id} className="bg-surface p-6 rounded-3xl border border-border flex flex-col md:flex-row gap-8 items-center relative group">
                   
-                  {/* Image */}
+                  {}
                   <div className="relative w-full md:w-48 h-32 rounded-xl overflow-hidden shrink-0 border border-white/10">
                     <Image src={item.carImage} alt={item.carName} fill className="object-cover" />
                   </div>
 
-                  {/* Details */}
+                  {}
                   <div className="flex-grow w-full">
                     <div className="flex justify-between items-start mb-2">
                       <div>
@@ -84,7 +84,7 @@ export default function CartPage() {
               ))}
             </div>
 
-            {/* Order Summary */}
+            {}
             <div>
               <div className="bg-gradient-to-br from-surface to-background p-8 rounded-3xl border border-border sticky top-32">
                 <h3 className="text-2xl font-black tracking-tight mb-8">Summary</h3>

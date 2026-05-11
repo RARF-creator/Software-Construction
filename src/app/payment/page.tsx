@@ -24,7 +24,7 @@ function PaymentForm() {
     setIsProcessing(true);
 
     try {
-      // Process all bookings in the cart
+      
       const bookingPromises = items.map(item => 
         fetch("/api/bookings", {
           method: "POST",
@@ -69,7 +69,7 @@ function PaymentForm() {
   return (
     <div className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 relative z-10">
       
-      {/* Summary Col */}
+      {}
       <div>
         <h2 className="text-3xl font-black tracking-tight mb-8">Order Summary</h2>
         <div className="bg-surface p-8 rounded-3xl border border-border">
@@ -98,7 +98,7 @@ function PaymentForm() {
         </div>
       </div>
 
-      {/* Payment Form Col */}
+      {}
       <div>
         <h2 className="text-3xl font-black tracking-tight mb-8">Secure Checkout</h2>
         <form onSubmit={handlePayment} className="space-y-6 bg-white/5 p-8 rounded-3xl border border-border backdrop-blur-md">
@@ -152,7 +152,7 @@ function PaymentForm() {
 export default function PaymentPage() {
   return (
     <main className="min-h-screen bg-background text-white pt-32 pb-0 relative overflow-hidden flex flex-col">
-      {/* Background Glow */}
+      {}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[radial-gradient(circle,_rgba(255,255,255,0.05)_0%,_transparent_60%)] pointer-events-none" />
       
       <div className="flex-grow">

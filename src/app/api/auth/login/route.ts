@@ -17,8 +17,8 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid credentials." }, { status: 401 });
     }
 
-    // In a real app you'd set an httpOnly cookie with a JWT.
-    // Here we return user info to store in localStorage.
+    
+    
     return NextResponse.json({
       id: user.id,
       name: user.name,

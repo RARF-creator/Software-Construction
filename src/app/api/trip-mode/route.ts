@@ -3,7 +3,7 @@ import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient();
 
-// GET /api/trip-mode?terrain=City&passengers=2
+
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);

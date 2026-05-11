@@ -24,7 +24,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close avatar dropdown on outside click
+  
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (avatarRef.current && !avatarRef.current.contains(e.target as Node)) {
@@ -49,7 +49,7 @@ export default function Navbar() {
     router.push("/");
   };
 
-  // Generate initials avatar from name
+  
   const initials = user?.name
     ? user.name.split(" ").map(n => n[0]).join("").slice(0, 2).toUpperCase()
     : "?";
@@ -123,7 +123,7 @@ export default function Navbar() {
                         }`}>{user.role}</span>
                       </div>
 
-                      {/* Menu Items */}
+                      {}
                       <div className="py-2">
                         <Link
                           href={dashboardLink}
@@ -173,8 +173,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
             ) : (
-              /* Logged-out state */
-              <>
+                            <>
                 <Link href="/auth/login" className="text-white/80 hover:text-white transition-colors text-sm font-medium tracking-wide">
                   LOGIN
                 </Link>
@@ -185,7 +184,7 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {}
           <button
             className="md:hidden text-white"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -197,7 +196,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div

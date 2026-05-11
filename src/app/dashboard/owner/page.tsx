@@ -108,7 +108,7 @@ export default function OwnerDashboard() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex-grow w-full">
 
-        {/* Header */}
+        {}
         <div className="mb-16 flex flex-col md:flex-row md:justify-between md:items-end">
           <div>
             <h4 className="text-sm font-semibold tracking-[0.3em] text-accent uppercase mb-4">Owner Command Center</h4>
@@ -117,7 +117,7 @@ export default function OwnerDashboard() {
           </div>
         </div>
 
-        {/* Stats */}
+        {}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
           {[
             { label: "Total Revenue", value: `$${totalRevenue.toLocaleString()}`, accent: true },
@@ -132,7 +132,7 @@ export default function OwnerDashboard() {
           ))}
         </div>
 
-        {/* Pending Bookings for Approval */}
+        {}
         {pendingBookings.length > 0 && (
           <div className="mb-16">
             <h2 className="text-2xl font-black tracking-tight mb-8 flex items-center gap-3">
@@ -169,7 +169,7 @@ export default function OwnerDashboard() {
           </div>
         )}
 
-        {/* Fleet Management */}
+        {}
         <div>
           <h2 className="text-2xl font-black tracking-tight mb-8">Manage Fleet</h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

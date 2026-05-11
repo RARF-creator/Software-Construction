@@ -43,7 +43,7 @@ export default function CarDetailClient({ car }: { car: any }) {
     : car.pricePerDay * 300;
 
   const totalCost = units * unitPrice;
-  const advancePayment = totalCost / 2; // 50% advance
+  const advancePayment = totalCost / 2; 
 
   const handleAddToCart = () => {
     if (totalCost === 0) return;
@@ -69,7 +69,7 @@ export default function CarDetailClient({ car }: { car: any }) {
 
   return (
     <div className="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto">
-      {/* Back Button */}
+      {}
       <button 
         onClick={() => router.push("/fleet")}
         className="text-white/60 hover:text-white font-bold tracking-widest text-sm uppercase mb-12 flex items-center gap-2 transition-colors"
@@ -78,9 +78,9 @@ export default function CarDetailClient({ car }: { car: any }) {
       </button>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        {/* Left Col: Images & Damage Report */}
+        {}
         <div className="space-y-12">
-          {/* Main Image */}
+          {}
           <div className="relative h-[400px] md:h-[500px] rounded-3xl overflow-hidden border border-border shadow-2xl">
             <Image 
               src={car.image} 
@@ -93,7 +93,7 @@ export default function CarDetailClient({ car }: { car: any }) {
             </div>
           </div>
 
-          {/* Damage Report Viewer */}
+          {}
           <div className="bg-surface rounded-3xl p-8 border border-border">
             <h3 className="text-2xl font-black tracking-tight mb-6 flex items-center gap-3">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
@@ -118,7 +118,7 @@ export default function CarDetailClient({ car }: { car: any }) {
           </div>
         </div>
 
-        {/* Right Col: Details & Estimator */}
+        {}
         <div>
           <div className="mb-12">
             <h4 className="text-accent font-bold tracking-widest uppercase mb-2">{car.brand}</h4>
@@ -145,7 +145,7 @@ export default function CarDetailClient({ car }: { car: any }) {
             </div>
           </div>
 
-          {/* Cost Estimator */}
+          {}
           <div className="bg-gradient-to-br from-surface to-background p-8 rounded-3xl border border-border shadow-2xl relative overflow-hidden">
             <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle,_rgba(99,102,241,0.05)_0%,_transparent_60%)] pointer-events-none" />
             

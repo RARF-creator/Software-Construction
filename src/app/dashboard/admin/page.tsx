@@ -50,7 +50,7 @@ export default function AdminDashboard() {
       if (bRes.ok) {
         const data = await bRes.json();
         setBookings(data);
-        // Extract unique users from bookings
+        
         const unique = new Map<string, User>();
         data.forEach((b: Booking) => { if (b.customer) unique.set(b.customer.id, b.customer); });
         setUsers(Array.from(unique.values()));
@@ -114,7 +114,7 @@ export default function AdminDashboard() {
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex-grow w-full">
 
-        {/* Header */}
+        {}
         <div className="mb-14">
           <div className="flex items-center gap-3 mb-3">
             <span className="w-2.5 h-2.5 rounded-full bg-red-400 animate-pulse" />
@@ -124,7 +124,7 @@ export default function AdminDashboard() {
           <p className="text-white/50">Full platform oversight — users, bookings, fleet, and revenue.</p>
         </div>
 
-        {/* KPI Cards */}
+        {}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
           {[
             { label: "Platform Revenue", value: `$${totalRevenue.toLocaleString()}`, icon: "💰", accent: "text-green-400" },
@@ -145,7 +145,7 @@ export default function AdminDashboard() {
           ))}
         </div>
 
-        {/* Search + Tabs */}
+        {}
         <div className="flex flex-col md:flex-row md:items-center gap-4 mb-8">
           <div className="flex items-center gap-1 p-1 bg-surface rounded-2xl border border-border">
             {(["bookings", "users", "fleet"] as const).map(tab => (

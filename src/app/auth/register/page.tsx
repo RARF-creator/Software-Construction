@@ -36,11 +36,11 @@ export default function RegisterPage() {
 
   return (
     <main className="min-h-screen bg-background text-white flex items-center justify-center px-6 relative overflow-hidden">
-      {/* Background Glow */}
+      {}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(99,102,241,0.08)_0%,_transparent_60%)] pointer-events-none" />
 
       <div className="w-full max-w-md relative z-10">
-        {/* Logo */}
+        {}
         <Link href="/" className="block text-center mb-12">
           <span className="text-3xl font-black tracking-tighter">NOMAD</span>
         </Link>

@@ -23,7 +23,7 @@ export default function ProfilePage() {
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
-    // Simulate save delay — wire to PATCH /api/users/[id] when needed
+    
     await new Promise(r => setTimeout(r, 1000));
     toast("Profile updated successfully!", "success");
     setIsSaving(false);
@@ -52,19 +52,19 @@ export default function ProfilePage() {
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[radial-gradient(circle,_rgba(255,255,255,0.04)_0%,_transparent_60%)] pointer-events-none" />
 
       <div className="max-w-2xl mx-auto px-6 w-full flex-grow relative z-10">
-        {/* Header */}
+        {}
         <div className="mb-12">
           <h4 className="text-sm font-semibold tracking-[0.3em] text-accent uppercase mb-4">Account</h4>
           <h1 className="text-4xl md:text-5xl font-black tracking-tighter">Your Profile</h1>
         </div>
 
-        {/* Role Badge */}
+        {}
         <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-black uppercase tracking-widest border border-white/10 mb-10 ${roleColors[user?.role ?? "CUSTOMER"]}`}>
           <span className="w-2 h-2 rounded-full bg-current" />
           {user?.role}
         </div>
 
-        {/* Edit Form */}
+        {}
         <form onSubmit={handleSave} className="bg-surface p-8 md:p-10 rounded-3xl border border-border space-y-6 mb-8">
           <h2 className="text-xl font-black tracking-tight">Personal Details</h2>
 
@@ -99,7 +99,7 @@ export default function ProfilePage() {
           </div>
         </form>
 
-        {/* Danger Zone */}
+        {}
         <div className="bg-surface p-8 rounded-3xl border border-red-500/20">
           <h2 className="text-xl font-black tracking-tight mb-2 text-red-400">Danger Zone</h2>
           <p className="text-white/40 text-sm mb-6">These actions are irreversible. Proceed with caution.</p>

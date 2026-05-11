@@ -1,6 +1,4 @@
-/**
- * @param this
- */
+
 declare function $extends(this: Client, extension: ExtensionArgs | ((client: Client) => Client)): Client;
 
 declare type AccelerateEngineConfig = {
@@ -56,27 +54,15 @@ export declare type Args<T, F extends Operation> = T extends {
 
 export declare type Args_3<T, F extends Operation> = Args<T, F>;
 
-/**
- * Original `quaint::ValueType` enum tag from Prisma's `quaint`.
- * Query arguments marked with this type are sanitized before being sent to the database.
- * Notice while a query argument may be `null`, `ArgType` is guaranteed to be defined.
- */
+
 declare type ArgType = 'Int32' | 'Int64' | 'Float' | 'Double' | 'Text' | 'Enum' | 'EnumArray' | 'Bytes' | 'Boolean' | 'Char' | 'Array' | 'Numeric' | 'Json' | 'Xml' | 'Uuid' | 'DateTime' | 'Date' | 'Time';
 
-/**
- * Attributes is a map from string to attribute values.
- *
- * Note: only the own enumerable keys are counted as valid attribute keys.
- */
+
 declare interface Attributes {
     [attributeKey: string]: AttributeValue | undefined;
 }
 
-/**
- * Attribute values may be any non-nullish primitive value except an object.
- *
- * null or undefined attribute values are invalid and will result in undefined behavior.
- */
+
 declare type AttributeValue = string | number | boolean | Array<null | undefined | string> | Array<null | undefined | number> | Array<null | undefined | boolean>;
 
 export declare type BaseDMMF = {
@@ -219,26 +205,11 @@ declare type ConnectionInfo = {
 declare type ConnectorType = 'mysql' | 'mongodb' | 'sqlite' | 'postgresql' | 'postgres' | 'sqlserver' | 'cockroachdb';
 
 declare interface Context {
-    /**
-     * Get a value from the context.
-     *
-     * @param key key which identifies a context value
-     */
+    
     getValue(key: symbol): unknown;
-    /**
-     * Create a new context which inherits from this context and has
-     * the given key set to the given value.
-     *
-     * @param key context key for which to set the value
-     * @param value value to set for the given key
-     */
+    
     setValue(key: symbol, value: unknown): Context;
-    /**
-     * Return a new context which inherits from this context but does
-     * not contain a value for the given key.
-     *
-     * @param key context key for which to clear a value
-     */
+    
     deleteValue(key: symbol): Context;
 }
 
@@ -247,16 +218,12 @@ declare type Context_2<T> = T extends {
         ctx: infer C;
     };
 } ? C & T & {
-    /**
-     * @deprecated Use `$name` instead.
-     */
+    
     name?: string;
     $name?: string;
     $parent?: unknown;
 } : T & {
-    /**
-     * @deprecated Use `$name` instead.
-     */
+    
     name?: string;
     $name?: string;
     $parent?: unknown;
@@ -306,16 +273,7 @@ export declare const Debug: typeof debugCreate & {
     formatters: {};
 };
 
-/**
- * Create a new debug instance with the given namespace.
- *
- * @example
- * ```ts
- * import Debug from '@prisma/debug'
- * const debug = Debug('prisma:client')
- * debug('Hello World')
- * ```
- */
+
 declare function debugCreate(namespace: string): ((...args: any[]) => void) & {
     color: string;
     enabled: boolean;
@@ -331,7 +289,7 @@ export declare namespace Decimal {
     export type Modulo = Rounding | 9;
     export type Value = string | number | Decimal;
 
-    // http://mikemcl.github.io/decimal.js/#constructor-properties
+    
     export interface Config {
         precision?: number;
         rounding?: Rounding;
@@ -552,7 +510,7 @@ export declare class Decimal {
     static min(...n: Decimal.Value[]): Decimal;
     static mod(x: Decimal.Value, y: Decimal.Value): Decimal;
     static mul(x: Decimal.Value, y: Decimal.Value): Decimal;
-    static noConflict(): Decimal.Constructor;   // Browser only
+    static noConflict(): Decimal.Constructor;   
     static pow(base: Decimal.Value, exponent: Decimal.Value): Decimal;
     static random(significantDigits?: number): Decimal;
     static round(n: Decimal.Value): Decimal;
@@ -591,11 +549,7 @@ export declare class Decimal {
     static readonly EUCLID: 9;
 }
 
-/**
- * Interface for any Decimal.js-like library
- * Allows us to accept Decimal.js from different
- * versions and some compatible alternatives
- */
+
 export declare interface DecimalJsLike {
     d: number[];
     e: number;
@@ -709,10 +663,7 @@ export declare namespace DMMF {
         isReadOnly: boolean;
         isGenerated?: boolean;
         isUpdatedAt?: boolean;
-        /**
-         * Describes the data type in the same the way it is defined in the Prisma schema:
-         * BigInt, Boolean, Bytes, DateTime, Decimal, Float, Int, JSON, String, $ModelName
-         */
+        
         type: string;
         dbName?: string | null;
         hasDefaultValue: boolean;
@@ -863,7 +814,7 @@ export declare namespace DMMF {
         delete = "delete",
         deleteMany = "deleteMany",
         groupBy = "groupBy",
-        count = "count",// TODO: count does not actually exist, why?
+        count = "count",
         aggregate = "aggregate",
         findRaw = "findRaw",
         aggregateRaw = "aggregateRaw"
@@ -873,17 +824,13 @@ export declare namespace DMMF {
 export declare function dmmfToRuntimeDataModel(dmmfDataModel: DMMF.Datamodel): RuntimeDataModel;
 
 export declare interface DriverAdapter extends Queryable {
-    /**
-     * Starts new transaction.
-     */
+    
     transactionContext(): Promise<Result_4<TransactionContext>>;
-    /**
-     * Optional method that returns extra connection info
-     */
+    
     getConnectionInfo?(): Result_4<ConnectionInfo>;
 }
 
-/** Client */
+
 export declare type DynamicClientExtensionArgs<C_, TypeMap extends TypeMapDef, TypeMapCb extends TypeMapCbDef, ExtArgs extends Record<string, any>, ClientOptions> = {
     [P in keyof C_]: unknown;
 } & {
@@ -924,7 +871,7 @@ export declare type DynamicClientExtensionThisBuiltin<TypeMap extends TypeMapDef
     $connect(): Promise<void>;
 };
 
-/** Model */
+
 export declare type DynamicModelExtensionArgs<M_, TypeMap extends TypeMapDef, TypeMapCb extends TypeMapCbDef, ExtArgs extends Record<string, any>, ClientOptions> = {
     [K in keyof M_]: K extends '$allModels' ? {
         [P in keyof M_[K]]?: unknown;
@@ -939,9 +886,7 @@ export declare type DynamicModelExtensionArgs<M_, TypeMap extends TypeMapDef, Ty
             } & {
                 $name: ModelKey<TypeMap, K>;
             } & {
-                /**
-                 * @deprecated Use `$name` instead.
-                 */
+                
                 name: ModelKey<TypeMap, K>;
             };
         };
@@ -976,7 +921,7 @@ export declare type DynamicModelExtensionThis<TypeMap extends TypeMapDef, M exte
     };
 };
 
-/** Query */
+
 export declare type DynamicQueryExtensionArgs<Q_, TypeMap extends TypeMapDef> = {
     [K in keyof Q_]: K extends '$allOperations' ? (args: {
         model?: string;
@@ -1003,7 +948,7 @@ export declare type DynamicQueryExtensionCbArgs<TypeMap extends TypeMapDef, _0 e
 
 export declare type DynamicQueryExtensionCbArgsArgs<TypeMap extends TypeMapDef, _0 extends PropertyKey, _1 extends PropertyKey, _2 extends PropertyKey> = _2 extends '$queryRaw' | '$executeRaw' ? Sql : TypeMap[_0][_1]['operations'][_2]['args'];
 
-/** Result */
+
 export declare type DynamicResultExtensionArgs<R_, TypeMap extends TypeMapDef> = {
     [K in keyof R_]: {
         [P in keyof R_[K]]?: {
@@ -1023,15 +968,13 @@ export declare type DynamicResultExtensionNeeds<TypeMap extends TypeMapDef, M ex
     [N in keyof TypeMap['model'][M]['payload']['scalars']]?: boolean;
 };
 
-/**
- * Placeholder value for "no text".
- */
+
 export declare const empty: Sql;
 
 export declare type EmptyToUnknown<T> = T;
 
 declare interface Engine<InteractiveTransactionPayload = unknown> {
-    /** The name of the engine. This is meant to be consumed externally */
+    
     readonly name: string;
     onBeforeExit(callback: () => Promise<void>): void;
     start(): Promise<void>;
@@ -1068,47 +1011,21 @@ declare interface EngineConfig {
     activeProvider?: string;
     logEmitter: LogEmitter;
     transactionOptions: Transaction_2.Options;
-    /**
-     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale`.
-     * If set, this is only used in the library engine, and all queries would be performed through it,
-     * rather than Prisma's Rust drivers.
-     * @remarks only used by LibraryEngine.ts
-     */
+    
     adapter?: ErrorCapturingDriverAdapter;
-    /**
-     * The contents of the schema encoded into a string
-     * @remarks only used by DataProxyEngine.ts
-     */
+    
     inlineSchema: string;
-    /**
-     * The contents of the datasource url saved in a string
-     * @remarks only used by DataProxyEngine.ts
-     */
+    
     inlineDatasources: GetPrismaClientConfig['inlineDatasources'];
-    /**
-     * The string hash that was produced for a given schema
-     * @remarks only used by DataProxyEngine.ts
-     */
+    
     inlineSchemaHash: string;
-    /**
-     * The helper for interaction with OTEL tracing
-     * @remarks enabling is determined by the client and @prisma/instrumentation package
-     */
+    
     tracingHelper: TracingHelper;
-    /**
-     * Information about whether we have not found a schema.prisma file in the
-     * default location, and that we fell back to finding the schema.prisma file
-     * in the current working directory. This usually means it has been bundled.
-     */
+    
     isBundled?: boolean;
-    /**
-     * Web Assembly module loading configuration
-     */
+    
     engineWasm?: WasmLoadingConfig;
-    /**
-     * Allows Accelerate to use runtime utilities from the client. These are
-     * necessary for the AccelerateEngine to function correctly.
-     */
+    
     accelerateUtils?: {
         resolveDatasourceUrl: typeof resolveDatasourceUrl;
         getBatchRequestPayload: typeof getBatchRequestPayload;
@@ -1184,9 +1101,7 @@ declare type Error_2 = {
     state: string;
 } | {
     kind: 'Sqlite';
-    /**
-     * Sqlite extended error code: https://www.sqlite.org/rescode.html
-     */
+    
     extendedCode: number;
     message: string;
 };
@@ -1215,11 +1130,7 @@ export declare type Exact<A, W> = (A extends unknown ? (W extends A ? {
     [K in keyof A]: Exact<A[K], W[K]>;
 } : W) : never) | (A extends Narrowable ? A : never);
 
-/**
- * Defines Exception.
- *
- * string or an object with one of (message or name or code) and optional stack
- */
+
 declare type Exception = ExceptionWithCode | ExceptionWithMessage | ExceptionWithName | string;
 
 declare interface ExceptionWithCode {
@@ -1246,17 +1157,17 @@ declare interface ExceptionWithName {
 declare type ExtendedEventType = LogLevel | 'beforeExit';
 
 declare type ExtendedSpanOptions = SpanOptions & {
-    /** The name of the span */
+    
     name: string;
     internal?: boolean;
     middleware?: boolean;
-    /** Whether it propagates context (?=true) */
+    
     active?: boolean;
-    /** The context to append the span to */
+    
     context?: Context;
 };
 
-/** $extends, defineExtension */
+
 export declare interface ExtendsHook<Variant extends 'extends' | 'define', TypeMapCb extends TypeMapCbDef, ExtArgs extends Record<string, any>, TypeMap extends TypeMapDef = Call<TypeMapCb, {
     extArgs: ExtArgs;
 }>, ClientOptions = {}> {
@@ -1350,9 +1261,7 @@ export declare type ExtractGlobalOmit<Options, ModelName extends string> = Optio
 
 declare type Fetch = typeof nodeFetch;
 
-/**
- * A reference to a specific field of a specific model
- */
+
 export declare interface FieldRef<Model, FieldType> {
     readonly modelName: Model;
     readonly name: string;
@@ -1373,13 +1282,13 @@ declare interface GeneratorConfig {
     isCustomOutput?: boolean;
     provider: EnvValue;
     config: {
-        /** `output` is a reserved name and will only be available directly at `generator.output` */
+        
         output?: never;
-        /** `provider` is a reserved name and will only be available directly at `generator.provider` */
+        
         provider?: never;
-        /** `binaryTargets` is a reserved name and will only be available directly at `generator.binaryTargets` */
+        
         binaryTargets?: never;
-        /** `previewFeatures` is a reserved name and will only be available directly at `generator.previewFeatures` */
+        
         previewFeatures?: never;
     } & {
         [key: string]: string | string[] | undefined;
@@ -1465,119 +1374,49 @@ export declare function getPrismaClient(config: GetPrismaClientConfig): {
         _globalOmit?: GlobalOmitOptions | undefined;
         _extensions: MergedExtensionsList;
         _engine: Engine;
-        /**
-         * A fully constructed/applied Client that references the parent
-         * PrismaClient. This is used for Client extensions only.
-         */
+        
         _appliedParent: any;
         _createPrismaPromise: PrismaPromiseFactory;
-        /**
-         * Hook a middleware into the client
-         * @param middleware to hook
-         */
+        
         $use(middleware: QueryMiddleware): void;
         $on<E extends ExtendedEventType>(eventType: E, callback: EventCallback<E>): void;
         $connect(): Promise<void>;
-        /**
-         * Disconnect from the database
-         */
+        
         $disconnect(): Promise<void>;
-        /**
-         * Executes a raw query and always returns a number
-         */
+        
         $executeRawInternal(transaction: PrismaPromiseTransaction | undefined, clientMethod: string, args: RawQueryArgs, middlewareArgsMapper?: MiddlewareArgsMapper<unknown, unknown>): Promise<number>;
-        /**
-         * Executes a raw query provided through a safe tag function
-         * @see https://github.com/prisma/prisma/issues/7142
-         *
-         * @param query
-         * @param values
-         * @returns
-         */
+        
         $executeRaw(query: TemplateStringsArray | Sql, ...values: any[]): PrismaPromise_2<unknown>;
-        /**
-         * Unsafe counterpart of `$executeRaw` that is susceptible to SQL injections
-         * @see https://github.com/prisma/prisma/issues/7142
-         *
-         * @param query
-         * @param values
-         * @returns
-         */
+        
         $executeRawUnsafe(query: string, ...values: RawValue[]): PrismaPromise_2<unknown>;
-        /**
-         * Executes a raw command only for MongoDB
-         *
-         * @param command
-         * @returns
-         */
+        
         $runCommandRaw(command: Record<string, JsInputValue>): PrismaPromise_2<unknown>;
-        /**
-         * Executes a raw query and returns selected data
-         */
+        
         $queryRawInternal(transaction: PrismaPromiseTransaction | undefined, clientMethod: string, args: RawQueryArgs, middlewareArgsMapper?: MiddlewareArgsMapper<unknown, unknown>): Promise<any>;
-        /**
-         * Executes a raw query provided through a safe tag function
-         * @see https://github.com/prisma/prisma/issues/7142
-         *
-         * @param query
-         * @param values
-         * @returns
-         */
+        
         $queryRaw(query: TemplateStringsArray | Sql, ...values: any[]): PrismaPromise_2<unknown>;
-        /**
-         * Counterpart to $queryRaw, that returns strongly typed results
-         * @param typedSql
-         */
+        
         $queryRawTyped(typedSql: UnknownTypedSql): PrismaPromise_2<unknown>;
-        /**
-         * Unsafe counterpart of `$queryRaw` that is susceptible to SQL injections
-         * @see https://github.com/prisma/prisma/issues/7142
-         *
-         * @param query
-         * @param values
-         * @returns
-         */
+        
         $queryRawUnsafe(query: string, ...values: RawValue[]): PrismaPromise_2<unknown>;
-        /**
-         * Execute a batch of requests in a transaction
-         * @param requests
-         * @param options
-         */
+        
         _transactionWithArray({ promises, options, }: {
             promises: Array<PrismaPromise_2<any>>;
             options?: BatchTransactionOptions;
         }): Promise<any>;
-        /**
-         * Perform a long-running transaction
-         * @param callback
-         * @param options
-         * @returns
-         */
+        
         _transactionWithCallback({ callback, options, }: {
             callback: (client: Client) => Promise<unknown>;
             options?: Options;
         }): Promise<unknown>;
         _createItxClient(transaction: PrismaPromiseInteractiveTransaction): Client;
-        /**
-         * Execute queries within a transaction
-         * @param input a callback or a query list
-         * @param options to set timeouts (callback)
-         * @returns
-         */
+        
         $transaction(input: any, options?: any): Promise<any>;
-        /**
-         * Runs the middlewares over params before executing a request
-         * @param internalParams
-         * @returns
-         */
+        
         _request(internalParams: InternalRequestParams): Promise<any>;
         _executeRequest({ args, clientMethod, dataPath, callsite, action, model, argsMapper, transaction, unpacker, otelParentCtx, customDataProxyFetch, }: InternalRequestParams): Promise<any>;
         readonly $metrics: MetricsClient;
-        /**
-         * Shortcut for checking a preview flag
-         * @param feature preview flag
-         * @returns
-         */
+        
         _hasPreviewFlag(feature: string): boolean;
         $applyPendingMigrations(): Promise<void>;
         $extends: typeof $extends;
@@ -1585,11 +1424,7 @@ export declare function getPrismaClient(config: GetPrismaClientConfig): {
     };
 };
 
-/**
- * Config that is stored into the generated client. When the generated client is
- * loaded, this same config is passed to {@link getPrismaClient} which creates a
- * closure with that config around a non-instantiated [[PrismaClient]].
- */
+
 declare type GetPrismaClientConfig = {
     runtimeDataModel: RuntimeDataModel;
     generator?: GeneratorConfig;
@@ -1604,62 +1439,27 @@ declare type GetPrismaClientConfig = {
     engineVersion: string;
     datasourceNames: string[];
     activeProvider: ActiveConnectorType;
-    /**
-     * The contents of the schema encoded into a string
-     * @remarks only used for the purpose of data proxy
-     */
+    
     inlineSchema: string;
-    /**
-     * A special env object just for the data proxy edge runtime.
-     * Allows bundlers to inject their own env variables (Vercel).
-     * Allows platforms to declare global variables as env (Workers).
-     * @remarks only used for the purpose of data proxy
-     */
+    
     injectableEdgeEnv?: () => LoadedEnv;
-    /**
-     * The contents of the datasource url saved in a string.
-     * This can either be an env var name or connection string.
-     * It is needed by the client to connect to the Data Proxy.
-     * @remarks only used for the purpose of data proxy
-     */
+    
     inlineDatasources: {
         [name in string]: {
             url: EnvValue;
         };
     };
-    /**
-     * The string hash that was produced for a given schema
-     * @remarks only used for the purpose of data proxy
-     */
+    
     inlineSchemaHash: string;
-    /**
-     * A marker to indicate that the client was not generated via `prisma
-     * generate` but was generated via `generate --postinstall` script instead.
-     * @remarks used to error for Vercel/Netlify for schema caching issues
-     */
+    
     postinstall?: boolean;
-    /**
-     * Information about the CI where the Prisma Client has been generated. The
-     * name of the CI environment is stored at generation time because CI
-     * information is not always available at runtime. Moreover, the edge client
-     * has no notion of environment variables, so this works around that.
-     * @remarks used to error for Vercel/Netlify for schema caching issues
-     */
+    
     ciName?: string;
-    /**
-     * Information about whether we have not found a schema.prisma file in the
-     * default location, and that we fell back to finding the schema.prisma file
-     * in the current working directory. This usually means it has been bundled.
-     */
+    
     isBundled?: boolean;
-    /**
-     * A boolean that is `false` when the client was generated with --no-engine. At
-     * runtime, this means the client will be bound to be using the Data Proxy.
-     */
+    
     copyEngine?: boolean;
-    /**
-     * Optional wasm loading configuration
-     */
+    
     engineWasm?: WasmLoadingConfig;
 };
 
@@ -1718,62 +1518,27 @@ declare type HandleErrorParams = {
     globalOmit?: GlobalOmitOptions;
 };
 
-/**
- * Defines High-Resolution Time.
- *
- * The first number, HrTime[0], is UNIX Epoch time in seconds since 00:00:00 UTC on 1 January 1970.
- * The second number, HrTime[1], represents the partial second elapsed since Unix Epoch time represented by first number in nanoseconds.
- * For example, 2021-01-01T12:30:10.150Z in UNIX Epoch time in milliseconds is represented as 1609504210150.
- * The first number is calculated by converting and truncating the Epoch time in milliseconds to seconds:
- * HrTime[0] = Math.trunc(1609504210150 / 1000) = 1609504210.
- * The second number is calculated by converting the digits after the decimal point of the subtraction, (1609504210150 / 1000) - HrTime[0], to nanoseconds:
- * HrTime[1] = Number((1609504210.150 - HrTime[0]).toFixed(9)) * 1e9 = 150000000.
- * This is represented in HrTime format as [1609504210, 150000000].
- */
+
 declare type HrTime = [number, number];
 
-/**
- * Matches a JSON array.
- * Unlike \`JsonArray\`, readonly arrays are assignable to this type.
- */
+
 export declare interface InputJsonArray extends ReadonlyArray<InputJsonValue | null> {
 }
 
-/**
- * Matches a JSON object.
- * Unlike \`JsonObject\`, this type allows undefined and read-only properties.
- */
+
 export declare type InputJsonObject = {
     readonly [Key in string]?: InputJsonValue | null;
 };
 
-/**
- * Matches any valid value that can be used as an input for operations like
- * create and update as the value of a JSON field. Unlike \`JsonValue\`, this
- * type allows read-only arrays and read-only object properties and disallows
- * \`null\` at the top level.
- *
- * \`null\` cannot be used as the value of a JSON field because its meaning
- * would be ambiguous. Use \`Prisma.JsonNull\` to store the JSON null value or
- * \`Prisma.DbNull\` to clear the JSON value and set the field to the database
- * NULL value instead.
- *
- * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-by-null-values
- */
+
 export declare type InputJsonValue = string | number | boolean | InputJsonObject | InputJsonArray | {
     toJSON(): unknown;
 };
 
 declare type InteractiveTransactionInfo<Payload = unknown> = {
-    /**
-     * Transaction ID returned by the query engine.
-     */
+    
     id: string;
-    /**
-     * Arbitrary payload the meaning of which depends on the `Engine` implementation.
-     * For example, `DataProxyEngine` needs to associate different API endpoints with transactions.
-     * In `LibraryEngine` and `BinaryEngine` it is currently not used.
-     */
+    
     payload: Payload;
 };
 
@@ -1815,27 +1580,19 @@ export declare type InternalArgs<R = {
 };
 
 declare type InternalRequestParams = {
-    /**
-     * The original client method being called.
-     * Even though the rootField / operation can be changed,
-     * this method stays as it is, as it's what the user's
-     * code looks like
-     */
+    
     clientMethod: string;
-    /**
-     * Name of js model that triggered the request. Might be used
-     * for warnings or error messages
-     */
+    
     jsModelName?: string;
     callsite?: CallSite;
     transaction?: PrismaPromiseTransaction;
     unpacker?: Unpacker;
     otelParentCtx?: Context;
-    /** Used to "desugar" a user input into an "expanded" one */
+    
     argsMapper?: (args?: UserArgs_2) => UserArgs_2;
-    /** Used to convert args for middleware and back */
+    
     middlewareArgsMapper?: MiddlewareArgsMapper<unknown, unknown>;
-    /** Used for Accelerate client extension via Data Proxy */
+    
     customDataProxyFetch?: (fetch: Fetch) => Fetch;
 } & Omit<QueryMiddlewareParams, 'runInTransaction'>;
 
@@ -1861,9 +1618,7 @@ declare interface Job {
     request: any;
 }
 
-/**
- * Create a SQL query for a list of values.
- */
+
 export declare function join(values: readonly RawValue[], separator?: string, prefix?: string, suffix?: string): Sql;
 
 export declare type JsArgs = {
@@ -1881,10 +1636,7 @@ declare type JsonArgumentValue = number | string | boolean | null | RawTaggedVal
     [key: string]: JsonArgumentValue;
 };
 
-/**
- * From https://github.com/sindresorhus/type-fest/
- * Matches a JSON array.
- */
+
 export declare interface JsonArray extends Array<JsonValue> {
 }
 
@@ -1907,11 +1659,7 @@ declare type JsonFieldSelection = {
 declare class JsonNull extends NullTypesEnumValue {
 }
 
-/**
- * From https://github.com/sindresorhus/type-fest/
- * Matches a JSON object.
- * This type can be useful to enforce some input to be JSON-compatible or as a super-type to be extended from.
- */
+
 export declare type JsonObject = {
     [Key in string]?: JsonValue;
 };
@@ -1931,10 +1679,7 @@ declare type JsonSelectionSet = {
     [fieldName: string]: boolean | JsonFieldSelection;
 };
 
-/**
- * From https://github.com/sindresorhus/type-fest/
- * Matches any valid JSON value.
- */
+
 export declare type JsonValue = string | number | boolean | JsonObject | JsonArray | null;
 
 export declare type JsOutputValue = null | string | number | boolean | bigint | Uint8Array | Date | Decimal | JsOutputValue[] | {
@@ -1950,27 +1695,13 @@ declare type KnownErrorParams = {
     batchRequestIdx?: number;
 };
 
-/**
- * A pointer from the current {@link Span} to another span in the same trace or
- * in a different trace.
- * Few examples of Link usage.
- * 1. Batch Processing: A batch of elements may contain elements associated
- *    with one or more traces/spans. Since there can only be one parent
- *    SpanContext, Link is used to keep reference to SpanContext of all
- *    elements in the batch.
- * 2. Public Endpoint: A SpanContext in incoming client request on a public
- *    endpoint is untrusted from service provider perspective. In such case it
- *    is advisable to start a new trace with appropriate sampling decision.
- *    However, it is desirable to associate incoming SpanContext to new trace
- *    initiated on service provider side so two traces (from Client and from
- *    Service Provider) can be correlated.
- */
+
 declare interface Link {
-    /** The {@link SpanContext} of a linked span. */
+    
     context: SpanContext;
-    /** A set of {@link SpanAttributes} on the link. */
+    
     attributes?: SpanAttributes;
-    /** Count of attributes of the link that were dropped due to collection limits */
+    
     droppedAttributesCount?: number;
 }
 
@@ -1992,12 +1723,7 @@ declare type LogDefinition = {
     emit: 'stdout' | 'event';
 };
 
-/**
- * Typings for the events we emit.
- *
- * @remarks
- * If this is updated, our edge runtime shim needs to be updated as well.
- */
+
 declare type LogEmitter = {
     on<E extends EngineEventType>(event: E, listener: (event: EngineEvent<E>) => void): LogEmitter;
     emit(event: QueryEventType, payload: QueryEvent): boolean;
@@ -2014,36 +1740,12 @@ declare type LogEventType = 'info' | 'warn' | 'error';
 
 declare type LogLevel = 'info' | 'query' | 'warn' | 'error';
 
-/**
- * Generates more strict variant of an enum which, unlike regular enum,
- * throws on non-existing property access. This can be useful in following situations:
- * - we have an API, that accepts both `undefined` and `SomeEnumType` as an input
- * - enum values are generated dynamically from DMMF.
- *
- * In that case, if using normal enums and no compile-time typechecking, using non-existing property
- * will result in `undefined` value being used, which will be accepted. Using strict enum
- * in this case will help to have a runtime exception, telling you that you are probably doing something wrong.
- *
- * Note: if you need to check for existence of a value in the enum you can still use either
- * `in` operator or `hasOwnProperty` function.
- *
- * @param definition
- * @returns
- */
+
 export declare function makeStrictEnum<T extends Record<PropertyKey, string | number>>(definition: T): T;
 
 export declare function makeTypedQueryFactory(sql: string): (...values: any[]) => TypedSql<any[], unknown>;
 
-/**
- * Class that holds the list of all extensions, applied to particular instance,
- * as well as resolved versions of the components that need to apply on
- * different levels. Main idea of this class: avoid re-resolving as much of the
- * stuff as possible when new extensions are added while also delaying the
- * resolve until the point it is actually needed. For example, computed fields
- * of the model won't be resolved unless the model is actually queried. Neither
- * adding extensions with `client` component only cause other components to
- * recompute.
- */
+
 declare class MergedExtensionsList {
     private head?;
     private constructor();
@@ -2084,27 +1786,14 @@ export declare type Metrics = {
 export declare class MetricsClient {
     private _engine;
     constructor(engine: Engine);
-    /**
-     * Returns all metrics gathered up to this point in prometheus format.
-     * Result of this call can be exposed directly to prometheus scraping endpoint
-     *
-     * @param options
-     * @returns
-     */
+    
     prometheus(options?: MetricsOptions): Promise<string>;
-    /**
-     * Returns all metrics gathered up to this point in prometheus format.
-     *
-     * @param options
-     * @returns
-     */
+    
     json(options?: MetricsOptions): Promise<Metrics>;
 }
 
 declare type MetricsOptions = {
-    /**
-     * Labels to add to every metrics in key-value format
-     */
+    
     globalLabels?: Record<string, string>;
 };
 
@@ -2166,14 +1855,7 @@ export declare type Narrowable = string | number | bigint | boolean | [];
 
 export declare type NeverToUnknown<T> = [T] extends [never] ? unknown : T;
 
-/**
- * Imitates `fetch` via `https` to only suit our needs, it does nothing more.
- * This is because we cannot bundle `node-fetch` as it uses many other Node.js
- * utilities, while also bloating our bundles. This approach is much leaner.
- * @param url
- * @param options
- * @returns
- */
+
 declare function nodeFetch(url: string, options?: RequestOptions): Promise<RequestResponse>;
 
 declare class NodeHeaders {
@@ -2187,12 +1869,7 @@ declare class NodeHeaders {
     forEach(callbackfn: (value: string, key: string, parent: this) => void, thisArg?: any): void;
 }
 
-/**
- * @deprecated Please don´t rely on type checks to this error anymore.
- * This will become a regular `PrismaClientKnownRequestError` with code `P2025`
- * in the future major version of the client.
- * Instead of `error instanceof Prisma.NotFoundError` use `error.code === "P2025"`.
- */
+
 export declare class NotFoundError extends PrismaClientKnownRequestError {
     constructor(message: string, clientVersion: string);
 }
@@ -2201,14 +1878,10 @@ declare class NullTypesEnumValue extends ObjectEnumValue {
     _getNamespace(): string;
 }
 
-/**
- * List of Prisma enums that must use unique objects instead of strings as their values.
- */
+
 export declare const objectEnumNames: string[];
 
-/**
- * Base class for unique values of object-valued enums.
- */
+
 export declare abstract class ObjectEnumValue {
     constructor(arg?: symbol);
     abstract _getNamespace(): string;
@@ -2329,49 +2002,20 @@ export declare class PrismaClientKnownRequestError extends Error implements Erro
 }
 
 export declare type PrismaClientOptions = {
-    /**
-     * Overwrites the primary datasource url from your schema.prisma file
-     */
+    
     datasourceUrl?: string;
-    /**
-     * Instance of a Driver Adapter, e.g., like one provided by `@prisma/adapter-planetscale.
-     */
+    
     adapter?: DriverAdapter | null;
-    /**
-     * Overwrites the datasource url from your schema.prisma file
-     */
+    
     datasources?: Datasources;
-    /**
-     * @default "colorless"
-     */
+    
     errorFormat?: ErrorFormat;
-    /**
-     * The default values for Transaction options
-     * maxWait ?= 2000
-     * timeout ?= 5000
-     */
+    
     transactionOptions?: Transaction_2.Options;
-    /**
-     * @example
-     * \`\`\`
-     * // Defaults to stdout
-     * log: ['query', 'info', 'warn']
-     *
-     * // Emit as events
-     * log: [
-     *  { emit: 'stdout', level: 'query' },
-     *  { emit: 'stdout', level: 'info' },
-     *  { emit: 'stdout', level: 'warn' }
-     * ]
-     * \`\`\`
-     * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
-     */
+    
     log?: Array<LogLevel | LogDefinition>;
     omit?: GlobalOmitOptions;
-    /**
-     * @internal
-     * You probably don't want to use this. \`__internal\` is used by internal tooling.
-     */
+    
     __internal?: {
         debug?: boolean;
         engine?: {
@@ -2380,7 +2024,7 @@ export declare type PrismaClientOptions = {
             endpoint?: string;
             allowTriggerPanic?: boolean;
         };
-        /** This can be used for testing purposes */
+        
         configOverride?: (config: GetPrismaClientConfig) => GetPrismaClientConfig;
     };
 };
@@ -2411,35 +2055,15 @@ export declare interface PrismaPromise<T> extends Promise<T> {
     [Symbol.toStringTag]: 'PrismaPromise';
 }
 
-/**
- * Prisma's `Promise` that is backwards-compatible. All additions on top of the
- * original `Promise` are optional so that it can be backwards-compatible.
- * @see [[createPrismaPromise]]
- */
+
 declare interface PrismaPromise_2<A> extends Promise<A> {
-    /**
-     * Extension of the original `.then` function
-     * @param onfulfilled same as regular promises
-     * @param onrejected same as regular promises
-     * @param transaction transaction options
-     */
+    
     then<R1 = A, R2 = never>(onfulfilled?: (value: A) => R1 | PromiseLike<R1>, onrejected?: (error: unknown) => R2 | PromiseLike<R2>, transaction?: PrismaPromiseTransaction): Promise<R1 | R2>;
-    /**
-     * Extension of the original `.catch` function
-     * @param onrejected same as regular promises
-     * @param transaction transaction options
-     */
+    
     catch<R = never>(onrejected?: ((reason: any) => R | PromiseLike<R>) | undefined | null, transaction?: PrismaPromiseTransaction): Promise<A | R>;
-    /**
-     * Extension of the original `.finally` function
-     * @param onfinally same as regular promises
-     * @param transaction transaction options
-     */
+    
     finally(onfinally?: (() => void) | undefined | null, transaction?: PrismaPromiseTransaction): Promise<A>;
-    /**
-     * Called when executing a batch of regular tx
-     * @param transaction transaction options for batch tx
-     */
+    
     requestTransaction?(transaction: PrismaPromiseBatchTransaction): PromiseLike<unknown>;
 }
 
@@ -2453,15 +2077,7 @@ declare type PrismaPromiseBatchTransaction = {
 
 declare type PrismaPromiseCallback = (transaction?: PrismaPromiseTransaction) => PrismaPromise_2<unknown>;
 
-/**
- * Creates a [[PrismaPromise]]. It is Prisma's implementation of `Promise` which
- * is essentially a proxy for `Promise`. All the transaction-compatible client
- * methods return one, this allows for pre-preparing queries without executing
- * them until `.then` is called. It's the foundation of Prisma's query batching.
- * @param callback that will be wrapped within our promise implementation
- * @see [[PrismaPromise]]
- * @returns
- */
+
 declare type PrismaPromiseFactory = (callback: PrismaPromiseCallback) => PrismaPromise_2<unknown>;
 
 declare type PrismaPromiseInteractiveTransaction<PayloadType = unknown> = {
@@ -2501,20 +2117,9 @@ declare type Query = {
 declare interface Queryable {
     readonly provider: 'mysql' | 'postgres' | 'sqlite';
     readonly adapterName: (typeof officialPrismaAdapters)[number] | (string & {});
-    /**
-     * Execute a query given as SQL, interpolating the given parameters,
-     * and returning the type-aware result set of the query.
-     *
-     * This is the preferred way of executing `SELECT` queries.
-     */
+    
     queryRaw(params: Query): Promise<Result_4<ResultSet>>;
-    /**
-     * Execute a query given as SQL, interpolating the given parameters,
-     * and returning the number of affected rows.
-     *
-     * This is the preferred way of executing `INSERT`, `UPDATE`, `DELETE` queries,
-     * as well as transactional queries.
-     */
+    
     executeRaw(params: Query): Promise<Result_4<number>>;
 }
 
@@ -2545,10 +2150,7 @@ declare interface QueryEngineConstructor {
 declare type QueryEngineInstance = {
     connect(headers: string): Promise<void>;
     disconnect(headers: string): Promise<void>;
-    /**
-     * @param requestStr JSON.stringified `QueryEngineRequest | QueryEngineBatchRequest`
-     * @param headersStr JSON.stringified `QueryEngineRequestHeaders`
-     */
+    
     query(requestStr: string, headersStr: string, transactionId?: string): Promise<string>;
     sdlSchema(): Promise<string>;
     dmmf(traceparent: string): Promise<string>;
@@ -2589,13 +2191,13 @@ declare type QueryEventType = 'query';
 declare type QueryMiddleware = (params: QueryMiddlewareParams, next: (params: QueryMiddlewareParams) => Promise<unknown>) => Promise<unknown>;
 
 declare type QueryMiddlewareParams = {
-    /** The model this is executed on */
+    
     model?: string;
-    /** The action that is being handled */
+    
     action: Action;
-    /** TODO what is this */
+    
     dataPath: string[];
-    /** TODO what is this */
+    
     runInTransaction: boolean;
     args?: UserArgs_2;
 };
@@ -2617,9 +2219,7 @@ export declare type QueryOptionsCbArgs = {
     query: (args: JsArgs | RawQueryArgs) => Promise<unknown>;
 };
 
-/**
- * Create raw SQL statement.
- */
+
 export declare function raw(value: string): Sql;
 
 export declare type RawParameters = {
@@ -2634,9 +2234,7 @@ declare type RawTaggedValue = {
     value: unknown;
 };
 
-/**
- * Supported value or SQL instance.
- */
+
 export declare type RawValue = Value | Sql;
 
 export declare type ReadonlyDeep<T> = {
@@ -2682,10 +2280,7 @@ declare class RequestHandler {
     constructor(client: Client, logEmitter?: LogEmitter);
     request(params: RequestParams): Promise<any>;
     mapQueryEngineResult({ dataPath, unpacker }: RequestParams, response: QueryEngineResult<any>): any;
-    /**
-     * Handles the error and logs it, logging the error is done synchronously waiting for the event
-     * handlers to finish.
-     */
+    
     handleAndLogRequestError(params: HandleErrorParams): never;
     handleRequestError({ error, clientMethod, callsite, transaction, args, modelName, globalOmit, }: HandleErrorParams): never;
     sanitizeMessage(message: any): any;
@@ -2897,259 +2492,99 @@ declare class Skip {
 
 export declare const skip: Skip;
 
-/**
- * An interface that represents a span. A span represents a single operation
- * within a trace. Examples of span might include remote procedure calls or a
- * in-process function calls to sub-components. A Trace has a single, top-level
- * "root" Span that in turn may have zero or more child Spans, which in turn
- * may have children.
- *
- * Spans are created by the {@link Tracer.startSpan} method.
- */
+
 declare interface Span {
-    /**
-     * Returns the {@link SpanContext} object associated with this Span.
-     *
-     * Get an immutable, serializable identifier for this span that can be used
-     * to create new child spans. Returned SpanContext is usable even after the
-     * span ends.
-     *
-     * @returns the SpanContext object associated with this Span.
-     */
+    
     spanContext(): SpanContext;
-    /**
-     * Sets an attribute to the span.
-     *
-     * Sets a single Attribute with the key and value passed as arguments.
-     *
-     * @param key the key for this attribute.
-     * @param value the value for this attribute. Setting a value null or
-     *              undefined is invalid and will result in undefined behavior.
-     */
+    
     setAttribute(key: string, value: SpanAttributeValue): this;
-    /**
-     * Sets attributes to the span.
-     *
-     * @param attributes the attributes that will be added.
-     *                   null or undefined attribute values
-     *                   are invalid and will result in undefined behavior.
-     */
+    
     setAttributes(attributes: SpanAttributes): this;
-    /**
-     * Adds an event to the Span.
-     *
-     * @param name the name of the event.
-     * @param [attributesOrStartTime] the attributes that will be added; these are
-     *     associated with this event. Can be also a start time
-     *     if type is {@type TimeInput} and 3rd param is undefined
-     * @param [startTime] start time of the event.
-     */
+    
     addEvent(name: string, attributesOrStartTime?: SpanAttributes | TimeInput, startTime?: TimeInput): this;
-    /**
-     * Adds a single link to the span.
-     *
-     * Links added after the creation will not affect the sampling decision.
-     * It is preferred span links be added at span creation.
-     *
-     * @param link the link to add.
-     */
+    
     addLink(link: Link): this;
-    /**
-     * Adds multiple links to the span.
-     *
-     * Links added after the creation will not affect the sampling decision.
-     * It is preferred span links be added at span creation.
-     *
-     * @param links the links to add.
-     */
+    
     addLinks(links: Link[]): this;
-    /**
-     * Sets a status to the span. If used, this will override the default Span
-     * status. Default is {@link SpanStatusCode.UNSET}. SetStatus overrides the value
-     * of previous calls to SetStatus on the Span.
-     *
-     * @param status the SpanStatus to set.
-     */
+    
     setStatus(status: SpanStatus): this;
-    /**
-     * Updates the Span name.
-     *
-     * This will override the name provided via {@link Tracer.startSpan}.
-     *
-     * Upon this update, any sampling behavior based on Span name will depend on
-     * the implementation.
-     *
-     * @param name the Span name.
-     */
+    
     updateName(name: string): this;
-    /**
-     * Marks the end of Span execution.
-     *
-     * Call to End of a Span MUST not have any effects on child spans. Those may
-     * still be running and can be ended later.
-     *
-     * Do not return `this`. The Span generally should not be used after it
-     * is ended so chaining is not desired in this context.
-     *
-     * @param [endTime] the time to set as Span's end time. If not provided,
-     *     use the current time as the span's end time.
-     */
+    
     end(endTime?: TimeInput): void;
-    /**
-     * Returns the flag whether this span will be recorded.
-     *
-     * @returns true if this Span is active and recording information like events
-     *     with the `AddEvent` operation and attributes using `setAttributes`.
-     */
+    
     isRecording(): boolean;
-    /**
-     * Sets exception as a span event
-     * @param exception the exception the only accepted values are string or Error
-     * @param [time] the time to set as Span's event time. If not provided,
-     *     use the current time.
-     */
+    
     recordException(exception: Exception, time?: TimeInput): void;
 }
 
-/**
- * @deprecated please use {@link Attributes}
- */
+
 declare type SpanAttributes = Attributes;
 
-/**
- * @deprecated please use {@link AttributeValue}
- */
+
 declare type SpanAttributeValue = AttributeValue;
 
 declare type SpanCallback<R> = (span?: Span, context?: Context) => R;
 
-/**
- * A SpanContext represents the portion of a {@link Span} which must be
- * serialized and propagated along side of a {@link Baggage}.
- */
+
 declare interface SpanContext {
-    /**
-     * The ID of the trace that this span belongs to. It is worldwide unique
-     * with practically sufficient probability by being made as 16 randomly
-     * generated bytes, encoded as a 32 lowercase hex characters corresponding to
-     * 128 bits.
-     */
+    
     traceId: string;
-    /**
-     * The ID of the Span. It is globally unique with practically sufficient
-     * probability by being made as 8 randomly generated bytes, encoded as a 16
-     * lowercase hex characters corresponding to 64 bits.
-     */
+    
     spanId: string;
-    /**
-     * Only true if the SpanContext was propagated from a remote parent.
-     */
+    
     isRemote?: boolean;
-    /**
-     * Trace flags to propagate.
-     *
-     * It is represented as 1 byte (bitmap). Bit to represent whether trace is
-     * sampled or not. When set, the least significant bit documents that the
-     * caller may have recorded trace data. A caller who does not record trace
-     * data out-of-band leaves this flag unset.
-     *
-     * see {@link TraceFlags} for valid flag values.
-     */
+    
     traceFlags: number;
-    /**
-     * Tracing-system-specific info to propagate.
-     *
-     * The tracestate field value is a `list` as defined below. The `list` is a
-     * series of `list-members` separated by commas `,`, and a list-member is a
-     * key/value pair separated by an equals sign `=`. Spaces and horizontal tabs
-     * surrounding `list-members` are ignored. There can be a maximum of 32
-     * `list-members` in a `list`.
-     * More Info: https://www.w3.org/TR/trace-context/#tracestate-field
-     *
-     * Examples:
-     *     Single tracing system (generic format):
-     *         tracestate: rojo=00f067aa0ba902b7
-     *     Multiple tracing systems (with different formatting):
-     *         tracestate: rojo=00f067aa0ba902b7,congo=t61rcWkgMzE
-     */
+    
     traceState?: TraceState;
 }
 
 declare enum SpanKind {
-    /** Default value. Indicates that the span is used internally. */
+    
     INTERNAL = 0,
-    /**
-     * Indicates that the span covers server-side handling of an RPC or other
-     * remote request.
-     */
+    
     SERVER = 1,
-    /**
-     * Indicates that the span covers the client-side wrapper around an RPC or
-     * other remote request.
-     */
+    
     CLIENT = 2,
-    /**
-     * Indicates that the span describes producer sending a message to a
-     * broker. Unlike client and server, there is no direct critical path latency
-     * relationship between producer and consumer spans.
-     */
+    
     PRODUCER = 3,
-    /**
-     * Indicates that the span describes consumer receiving a message from a
-     * broker. Unlike client and server, there is no direct critical path latency
-     * relationship between producer and consumer spans.
-     */
+    
     CONSUMER = 4
 }
 
-/**
- * Options needed for span creation
- */
+
 declare interface SpanOptions {
-    /**
-     * The SpanKind of a span
-     * @default {@link SpanKind.INTERNAL}
-     */
+    
     kind?: SpanKind;
-    /** A span's attributes */
+    
     attributes?: SpanAttributes;
-    /** {@link Link}s span to other spans */
+    
     links?: Link[];
-    /** A manually specified start time for the created `Span` object. */
+    
     startTime?: TimeInput;
-    /** The new span should be a root span. (Ignore parent from context). */
+    
     root?: boolean;
 }
 
 declare interface SpanStatus {
-    /** The status code of this message. */
+    
     code: SpanStatusCode;
-    /** A developer-facing error message. */
+    
     message?: string;
 }
 
-/**
- * An enumeration of status codes.
- */
+
 declare enum SpanStatusCode {
-    /**
-     * The default status.
-     */
+    
     UNSET = 0,
-    /**
-     * The operation has been validated by an Application developer or
-     * Operator to have completed successfully.
-     */
+    
     OK = 1,
-    /**
-     * The operation contains an error.
-     */
+    
     ERROR = 2
 }
 
-/**
- * A SQL instance can be nested within each other to build SQL strings.
- */
+
 export declare class Sql {
     readonly values: Value[];
     readonly strings: string[];
@@ -3165,55 +2600,22 @@ export declare class Sql {
     };
 }
 
-/**
- * Create a SQL object from a template string.
- */
+
 export declare function sqltag(strings: readonly string[], ...values: readonly RawValue[]): Sql;
 
-/**
- * Defines TimeInput.
- *
- * hrtime, epoch milliseconds, performance.now() or Date
- */
+
 declare type TimeInput = HrTime | number | Date;
 
 export declare type ToTuple<T> = T extends any[] ? T : [T];
 
 declare interface TraceState {
-    /**
-     * Create a new TraceState which inherits from this TraceState and has the
-     * given key set.
-     * The new entry will always be added in the front of the list of states.
-     *
-     * @param key key of the TraceState entry.
-     * @param value value of the TraceState entry.
-     */
+    
     set(key: string, value: string): TraceState;
-    /**
-     * Return a new TraceState which inherits from this TraceState but does not
-     * contain the given key.
-     *
-     * @param key the key for the TraceState entry to be removed.
-     */
+    
     unset(key: string): TraceState;
-    /**
-     * Returns the value to which the specified key is mapped, or `undefined` if
-     * this map contains no mapping for the key.
-     *
-     * @param key with which the specified value is to be associated.
-     * @returns the value to which the specified key is mapped, or `undefined` if
-     *     this map contains no mapping for the key.
-     */
+    
     get(key: string): string | undefined;
-    /**
-     * Serializes the TraceState to a `list` as defined below. The `list` is a
-     * series of `list-members` separated by commas `,`, and a list-member is a
-     * key/value pair separated by an equals sign `=`. Spaces and horizontal tabs
-     * surrounding `list-members` are ignored. There can be a maximum of 32
-     * `list-members` in a `list`.
-     *
-     * @returns the serialized string.
-     */
+    
     serialize(): string;
 }
 
@@ -3226,17 +2628,11 @@ declare interface TracingHelper {
 }
 
 declare interface Transaction extends Queryable {
-    /**
-     * Transaction options.
-     */
+    
     readonly options: TransactionOptions;
-    /**
-     * Commit the transaction.
-     */
+    
     commit(): Promise<Result_4<void>>;
-    /**
-     * Rolls back the transaction.
-     */
+    
     rollback(): Promise<Result_4<void>>;
 }
 
@@ -3250,9 +2646,7 @@ declare namespace Transaction_2 {
 }
 
 declare interface TransactionContext extends Queryable {
-    /**
-     * Starts new transaction.
-     */
+    
     startTransaction(): Promise<Result_4<Transaction>>;
 }
 
@@ -3284,7 +2678,7 @@ export declare type TypeMapCbDef = Fn<{
     clientOptions: ClientOptionDef;
 }, TypeMapDef>;
 
-/** Shared */
+
 export declare type TypeMapDef = Record<any, any>;
 
 declare namespace Types {
@@ -3327,9 +2721,7 @@ export declare type UnwrapTuple<Tuple extends readonly unknown[]> = {
     [K in keyof Tuple]: K extends `${number}` ? Tuple[K] extends PrismaPromise<infer X> ? X : UnwrapPromise<Tuple[K]> : UnwrapPromise<Tuple[K]>;
 };
 
-/**
- * Input that flows from the user into the Client.
- */
+
 declare type UserArgs_2 = any;
 
 declare namespace Utils {
@@ -3373,9 +2765,7 @@ declare function validator<C, M extends Exclude<keyof C, `$${string}`>, O extend
 
 declare function validator<C, M extends Exclude<keyof C, `$${string}`>, O extends keyof C[M] & Operation, P extends keyof Args<C[M], O>>(client: C, model: M, operation: O, prop: P): <S>(select: Exact<S, Args<C[M], O>[P]>) => S;
 
-/**
- * Values supported by SQL engine.
- */
+
 export declare type Value = unknown;
 
 export declare function warnEnvConflicts(envPaths: any): void;
@@ -3383,20 +2773,12 @@ export declare function warnEnvConflicts(envPaths: any): void;
 export declare const warnOnce: (key: string, message: string, ...args: unknown[]) => void;
 
 declare type WasmLoadingConfig = {
-    /**
-     * WASM-bindgen runtime for corresponding module
-     */
+    
     getRuntime: () => {
         __wbg_set_wasm(exports: unknown): any;
         QueryEngine: QueryEngineConstructor;
     };
-    /**
-     * Loads the raw wasm module for the wasm query engine. This configuration is
-     * generated specifically for each type of client, eg. Node.js client and Edge
-     * clients will have different implementations.
-     * @remarks this is a callback on purpose, we only load the wasm if needed.
-     * @remarks only used by LibraryEngine.ts
-     */
+    
     getQueryEngineWasmModule: () => Promise<unknown>;
 };
 

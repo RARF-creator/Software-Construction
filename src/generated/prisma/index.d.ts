@@ -1,10 +1,7 @@
 
-/**
- * Client
-**/
 
 import * as runtime from './runtime/library.js';
-import $Types = runtime.Types // general types
+import $Types = runtime.Types 
 import $Public = runtime.Types.Public
 import $Utils = runtime.Types.Utils
 import $Extensions = runtime.Types.Extensions
@@ -13,41 +10,11 @@ import $Result = runtime.Types.Result
 export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
 
-/**
- * Model User
- * 
- */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
-/**
- * Model Car
- * 
- */
 export type Car = $Result.DefaultSelection<Prisma.$CarPayload>
-/**
- * Model Booking
- * 
- */
 export type Booking = $Result.DefaultSelection<Prisma.$BookingPayload>
-/**
- * Model DamageReport
- * 
- */
 export type DamageReport = $Result.DefaultSelection<Prisma.$DamageReportPayload>
 
-/**
- * ##  Prisma Client ʲˢ
- * 
- * Type-safe database client for TypeScript & Node.js
- * @example
- * ```
- * const prisma = new PrismaClient()
- * // Fetch zero or more Users
- * const users = await prisma.user.findMany()
- * ```
- *
- * 
- * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
- */
 export class PrismaClient<
   ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
   U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
@@ -55,147 +22,39 @@ export class PrismaClient<
 > {
   [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
 
-    /**
-   * ##  Prisma Client ʲˢ
-   * 
-   * Type-safe database client for TypeScript & Node.js
-   * @example
-   * ```
-   * const prisma = new PrismaClient()
-   * // Fetch zero or more Users
-   * const users = await prisma.user.findMany()
-   * ```
-   *
-   * 
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
-   */
-
+    
   constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
   $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): void;
 
-  /**
-   * Connect with the database
-   */
-  $connect(): $Utils.JsPromise<void>;
+    $connect(): $Utils.JsPromise<void>;
 
-  /**
-   * Disconnect from the database
-   */
-  $disconnect(): $Utils.JsPromise<void>;
+    $disconnect(): $Utils.JsPromise<void>;
 
-  /**
-   * Add a middleware
-   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
-   * @see https://pris.ly/d/extensions
-   */
-  $use(cb: Prisma.Middleware): void
+    $use(cb: Prisma.Middleware): void
 
-/**
-   * Executes a prepared raw query and returns the number of affected rows.
-   * @example
-   * ```
-   * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
-   * ```
-   * 
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
-   */
   $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
 
-  /**
-   * Executes a raw query and returns the number of affected rows.
-   * Susceptible to SQL injections, see documentation.
-   * @example
-   * ```
-   * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
-   * ```
-   * 
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
-   */
-  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
+    $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
 
-  /**
-   * Performs a prepared raw query and returns the `SELECT` data.
-   * @example
-   * ```
-   * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
-   * ```
-   * 
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
-   */
-  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
+    $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
 
-  /**
-   * Performs a raw query and returns the `SELECT` data.
-   * Susceptible to SQL injections, see documentation.
-   * @example
-   * ```
-   * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
-   * ```
-   * 
-   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
-   */
-  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
+    $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
 
 
-  /**
-   * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
-   * @example
-   * ```
-   * const [george, bob, alice] = await prisma.$transaction([
-   *   prisma.user.create({ data: { name: 'George' } }),
-   *   prisma.user.create({ data: { name: 'Bob' } }),
-   *   prisma.user.create({ data: { name: 'Alice' } }),
-   * ])
-   * ```
-   * 
-   * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
-   */
-  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+    $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
 
   $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
 
 
   $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb, ExtArgs>
 
-      /**
-   * `prisma.user`: Exposes CRUD operations for the **User** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Users
-    * const users = await prisma.user.findMany()
-    * ```
-    */
-  get user(): Prisma.UserDelegate<ExtArgs>;
+        get user(): Prisma.UserDelegate<ExtArgs>;
 
-  /**
-   * `prisma.car`: Exposes CRUD operations for the **Car** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Cars
-    * const cars = await prisma.car.findMany()
-    * ```
-    */
-  get car(): Prisma.CarDelegate<ExtArgs>;
+    get car(): Prisma.CarDelegate<ExtArgs>;
 
-  /**
-   * `prisma.booking`: Exposes CRUD operations for the **Booking** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Bookings
-    * const bookings = await prisma.booking.findMany()
-    * ```
-    */
-  get booking(): Prisma.BookingDelegate<ExtArgs>;
+    get booking(): Prisma.BookingDelegate<ExtArgs>;
 
-  /**
-   * `prisma.damageReport`: Exposes CRUD operations for the **DamageReport** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more DamageReports
-    * const damageReports = await prisma.damageReport.findMany()
-    * ```
-    */
-  get damageReport(): Prisma.DamageReportDelegate<ExtArgs>;
+    get damageReport(): Prisma.DamageReportDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -203,25 +62,16 @@ export namespace Prisma {
 
   export type PrismaPromise<T> = $Public.PrismaPromise<T>
 
-  /**
-   * Validator
-   */
-  export import validator = runtime.Public.validator
+    export import validator = runtime.Public.validator
 
-  /**
-   * Prisma Errors
-   */
-  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
+    export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
   export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
   export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
   export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
   export import PrismaClientValidationError = runtime.PrismaClientValidationError
   export import NotFoundError = runtime.NotFoundError
 
-  /**
-   * Re-export of sql-template-tag
-   */
-  export import sql = runtime.sqltag
+    export import sql = runtime.sqltag
   export import empty = runtime.empty
   export import join = runtime.join
   export import raw = runtime.raw
@@ -229,45 +79,29 @@ export namespace Prisma {
 
 
 
-  /**
-   * Decimal.js
-   */
-  export import Decimal = runtime.Decimal
+    export import Decimal = runtime.Decimal
 
   export type DecimalJsLike = runtime.DecimalJsLike
 
-  /**
-   * Metrics 
-   */
-  export type Metrics = runtime.Metrics
+    export type Metrics = runtime.Metrics
   export type Metric<T> = runtime.Metric<T>
   export type MetricHistogram = runtime.MetricHistogram
   export type MetricHistogramBucket = runtime.MetricHistogramBucket
 
-  /**
-  * Extensions
-  */
-  export import Extension = $Extensions.UserArgs
+    export import Extension = $Extensions.UserArgs
   export import getExtensionContext = runtime.Extensions.getExtensionContext
   export import Args = $Public.Args
   export import Payload = $Public.Payload
   export import Result = $Public.Result
   export import Exact = $Public.Exact
 
-  /**
-   * Prisma Client JS version: 5.22.0
-   * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
-   */
-  export type PrismaVersion = {
+    export type PrismaVersion = {
     client: string
   }
 
   export const prismaVersion: PrismaVersion 
 
-  /**
-   * Utility Types
-   */
-
+  
 
   export import JsonObject = runtime.JsonObject
   export import JsonArray = runtime.JsonArray
@@ -276,69 +110,28 @@ export namespace Prisma {
   export import InputJsonArray = runtime.InputJsonArray
   export import InputJsonValue = runtime.InputJsonValue
 
-  /**
-   * Types of the values used to represent different kinds of `null` values when working with JSON fields.
-   * 
-   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-   */
-  namespace NullTypes {
-    /**
-    * Type of `Prisma.DbNull`.
-    * 
-    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
-    * 
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
-    class DbNull {
+    namespace NullTypes {
+        class DbNull {
       private DbNull: never
       private constructor()
     }
 
-    /**
-    * Type of `Prisma.JsonNull`.
-    * 
-    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
-    * 
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
-    class JsonNull {
+        class JsonNull {
       private JsonNull: never
       private constructor()
     }
 
-    /**
-    * Type of `Prisma.AnyNull`.
-    * 
-    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
-    * 
-    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-    */
-    class AnyNull {
+        class AnyNull {
       private AnyNull: never
       private constructor()
     }
   }
 
-  /**
-   * Helper for filtering JSON entries that have `null` on the database (empty on the db)
-   * 
-   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-   */
-  export const DbNull: NullTypes.DbNull
+    export const DbNull: NullTypes.DbNull
 
-  /**
-   * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
-   * 
-   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-   */
-  export const JsonNull: NullTypes.JsonNull
+    export const JsonNull: NullTypes.JsonNull
 
-  /**
-   * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
-   * 
-   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
-   */
-  export const AnyNull: NullTypes.AnyNull
+    export const AnyNull: NullTypes.AnyNull
 
   type SelectAndInclude = {
     select: any
@@ -350,20 +143,11 @@ export namespace Prisma {
     omit: any
   }
 
-  /**
-   * Get the type of the value, that the Promise holds.
-   */
-  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
+    export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
 
-  /**
-   * Get the return type of a function which returns a Promise.
-   */
-  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+    export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
 
-  /**
-   * From T, pick a set of properties whose keys are in the union K
-   */
-  type Prisma__Pick<T, K extends keyof T> = {
+    type Prisma__Pick<T, K extends keyof T> = {
       [P in K]: T[P];
   };
 
@@ -380,20 +164,11 @@ export namespace Prisma {
 
   export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
 
-  /**
-   * Subset
-   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection
-   */
-  export type Subset<T, U> = {
+    export type Subset<T, U> = {
     [key in keyof T]: key extends keyof U ? T[key] : never;
   };
 
-  /**
-   * SelectSubset
-   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection.
-   * Additionally, it validates, if both select and include are present. If the case, it errors.
-   */
-  export type SelectSubset<T, U> = {
+    export type SelectSubset<T, U> = {
     [key in keyof T]: key extends keyof U ? T[key] : never
   } &
     (T extends SelectAndInclude
@@ -402,32 +177,21 @@ export namespace Prisma {
         ? 'Please either choose `select` or `omit`.'
         : {})
 
-  /**
-   * Subset + Intersection
-   * @desc From `T` pick properties that exist in `U` and intersect `K`
-   */
-  export type SubsetIntersection<T, U, K> = {
+    export type SubsetIntersection<T, U, K> = {
     [key in keyof T]: key extends keyof U ? T[key] : never
   } &
     K
 
   type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
 
-  /**
-   * XOR is needed to have a real mutually exclusive union type
-   * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
-   */
-  type XOR<T, U> =
+    type XOR<T, U> =
     T extends object ?
     U extends object ?
       (Without<T, U> & U) | (Without<U, T> & T)
     : U : T
 
 
-  /**
-   * Is T a Record?
-   */
-  type IsObject<T extends any> = T extends Array<any>
+    type IsObject<T extends any> = T extends Array<any>
   ? False
   : T extends Date
   ? False
@@ -440,19 +204,13 @@ export namespace Prisma {
   : False
 
 
-  /**
-   * If it's T[], return T
-   */
-  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
+    export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
 
-  /**
-   * From ts-toolbelt
-   */
-
+  
   type __Either<O extends object, K extends Key> = Omit<O, K> &
     {
-      // Merge all but K
-      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
+      
+      [P in K]: Prisma__Pick<O, P & keyof O> 
     }[K]
 
   type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
@@ -480,8 +238,7 @@ export namespace Prisma {
     [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
   } & {}
 
-  /** Helper Types for "Merge" **/
-  export type IntersectOf<U extends Union> = (
+    export type IntersectOf<U extends Union> = (
     U extends unknown ? (k: U) => void : never
   ) extends (k: infer I) => void
     ? I
@@ -516,10 +273,10 @@ export namespace Prisma {
     [P in K]: T;
   };
 
-  // cause typescript not to expand types and preserve names
+  
   type NoExpand<T> = T extends unknown ? T : never;
 
-  // this type assumes the passed object is entirely optional
+  
   type AtLeast<O extends object, K extends string> = NoExpand<
     O extends unknown
     ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
@@ -529,24 +286,17 @@ export namespace Prisma {
   type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
 
   export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
-  /** End Helper Types for "Merge" **/
-
+  
   export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
 
-  /**
-  A [[Boolean]]
-  */
-  export type Boolean = True | False
+    export type Boolean = True | False
 
-  // /**
-  // 1
-  // */
+  
+  
+  
   export type True = 1
 
-  /**
-  0
-  */
-  export type False = 0
+    export type False = 0
 
   export type Not<B extends Boolean> = {
     0: 1
@@ -554,7 +304,7 @@ export namespace Prisma {
   }[B]
 
   export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
-    ? 0 // anything `never` is false
+    ? 0 
     : A1 extends A2
     ? 1
     : 0
@@ -582,10 +332,7 @@ export namespace Prisma {
 
 
 
-  /**
-   * Used by group by
-   */
-
+  
   export type GetScalarType<T, O> = O extends object ? {
     [P in keyof T]: P extends keyof O
       ? O[P]
@@ -602,9 +349,9 @@ export namespace Prisma {
       Or<Extends<'OR', K>, Extends<'AND', K>>,
       Extends<'NOT', K>
     > extends True
-      ? // infer is only needed to not hit TS limit
-        // based on the brilliant idea of Pierre-Antoine Mills
-        // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
+      ? 
+        
+        
         T[K] extends infer TK
         ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
         : never
@@ -613,22 +360,13 @@ export namespace Prisma {
       : K
   }[keyof T]
 
-  /**
-   * Convert tuple to union
-   */
-  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
+    type _TupleToUnion<T> = T extends (infer E)[] ? E : never
   type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
   type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
 
-  /**
-   * Like `Pick`, but additionally can also accept an array of keys
-   */
-  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+    type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
 
-  /**
-   * Exclude all keys with underscores
-   */
-  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+    type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
 
 
   export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
@@ -968,41 +706,11 @@ export namespace Prisma {
   export type DefaultPrismaClient = PrismaClient
   export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
   export interface PrismaClientOptions {
-    /**
-     * Overwrites the datasource url from your schema.prisma file
-     */
-    datasources?: Datasources
-    /**
-     * Overwrites the datasource url from your schema.prisma file
-     */
-    datasourceUrl?: string
-    /**
-     * @default "colorless"
-     */
-    errorFormat?: ErrorFormat
-    /**
-     * @example
-     * ```
-     * // Defaults to stdout
-     * log: ['query', 'info', 'warn', 'error']
-     * 
-     * // Emit as events
-     * log: [
-     *   { emit: 'stdout', level: 'query' },
-     *   { emit: 'stdout', level: 'info' },
-     *   { emit: 'stdout', level: 'warn' }
-     *   { emit: 'stdout', level: 'error' }
-     * ]
-     * ```
-     * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
-     */
-    log?: (LogLevel | LogDefinition)[]
-    /**
-     * The default values for transactionOptions
-     * maxWait ?= 2000
-     * timeout ?= 5000
-     */
-    transactionOptions?: {
+        datasources?: Datasources
+        datasourceUrl?: string
+        errorFormat?: ErrorFormat
+        log?: (LogLevel | LogDefinition)[]
+        transactionOptions?: {
       maxWait?: number
       timeout?: number
       isolationLevel?: Prisma.TransactionIsolationLevel
@@ -1010,8 +718,7 @@ export namespace Prisma {
   }
 
 
-  /* Types for Logging */
-  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
+    export type LogLevel = 'info' | 'query' | 'warn' | 'error'
   export type LogDefinition = {
     level: LogLevel
     emit: 'stdout' | 'event'
@@ -1035,8 +742,7 @@ export namespace Prisma {
     message: string
     target: string
   }
-  /* End Types for Logging */
-
+  
 
   export type PrismaAction =
     | 'findUnique'
@@ -1060,10 +766,7 @@ export namespace Prisma {
     | 'findRaw'
     | 'groupBy'
 
-  /**
-   * These options are being passed into the middleware as "params"
-   */
-  export type MiddlewareParams = {
+    export type MiddlewareParams = {
     model?: ModelName
     action: PrismaAction
     args: any
@@ -1071,35 +774,23 @@ export namespace Prisma {
     runInTransaction: boolean
   }
 
-  /**
-   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
-   */
-  export type Middleware<T = any> = (
+    export type Middleware<T = any> = (
     params: MiddlewareParams,
     next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
   ) => $Utils.JsPromise<T>
 
-  // tested in getLogLevel.test.ts
+  
   export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
 
-  /**
-   * `PrismaClient` proxy available in interactive transactions.
-   */
-  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+    export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
 
   export type Datasource = {
     url?: string
   }
 
-  /**
-   * Count Types
-   */
+  
 
-
-  /**
-   * Count Type UserCountOutputType
-   */
-
+  
   export type UserCountOutputType = {
     cars: number
     bookings: number
@@ -1110,36 +801,21 @@ export namespace Prisma {
     bookings?: boolean | UserCountOutputTypeCountBookingsArgs
   }
 
-  // Custom InputTypes
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the UserCountOutputType
-     */
-    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  
+    export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserCountOutputTypeSelect<ExtArgs> | null
   }
 
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountCarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    export type UserCountOutputTypeCountCarsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: CarWhereInput
   }
 
-  /**
-   * UserCountOutputType without action
-   */
-  export type UserCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    export type UserCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BookingWhereInput
   }
 
 
-  /**
-   * Count Type CarCountOutputType
-   */
-
+  
   export type CarCountOutputType = {
     bookings: number
     damageReports: number
@@ -1150,40 +826,22 @@ export namespace Prisma {
     damageReports?: boolean | CarCountOutputTypeCountDamageReportsArgs
   }
 
-  // Custom InputTypes
-  /**
-   * CarCountOutputType without action
-   */
-  export type CarCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the CarCountOutputType
-     */
-    select?: CarCountOutputTypeSelect<ExtArgs> | null
+  
+    export type CarCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarCountOutputTypeSelect<ExtArgs> | null
   }
 
-  /**
-   * CarCountOutputType without action
-   */
-  export type CarCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    export type CarCountOutputTypeCountBookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: BookingWhereInput
   }
 
-  /**
-   * CarCountOutputType without action
-   */
-  export type CarCountOutputTypeCountDamageReportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    export type CarCountOutputTypeCountDamageReportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: DamageReportWhereInput
   }
 
 
-  /**
-   * Models
-   */
-
-  /**
-   * Model User
-   */
-
+  
+  
   export type AggregateUser = {
     _count: UserCountAggregateOutputType | null
     _min: UserMinAggregateOutputType | null
@@ -1254,52 +912,14 @@ export namespace Prisma {
   }
 
   export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which User to aggregate.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Users
-    **/
-    _count?: true | UserCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: UserMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: UserMaxAggregateInputType
+        where?: UserWhereInput
+        orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+        cursor?: UserWhereUniqueInput
+        take?: number
+        skip?: number
+        _count?: true | UserCountAggregateInputType
+        _min?: UserMinAggregateInputType
+        _max?: UserMaxAggregateInputType
   }
 
   export type GetUserAggregateType<T extends UserAggregateArgs> = {
@@ -1419,232 +1039,34 @@ export namespace Prisma {
 
   export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
-    /**
-     * Find zero or one User that matches the filter.
-     * @param {UserFindUniqueArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+        findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
-    /**
-     * Find one User that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+        findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
-    /**
-     * Find the first User that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+        findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
-    /**
-     * Find the first User that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
-     * @example
-     * // Get one User
-     * const user = await prisma.user.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+        findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
-    /**
-     * Find zero or more Users that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Users
-     * const users = await prisma.user.findMany()
-     * 
-     * // Get first 10 Users
-     * const users = await prisma.user.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany">>
+        findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany">>
 
-    /**
-     * Create a User.
-     * @param {UserCreateArgs} args - Arguments to create a User.
-     * @example
-     * // Create one User
-     * const User = await prisma.user.create({
-     *   data: {
-     *     // ... data to create a User
-     *   }
-     * })
-     * 
-     */
-    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create">, never, ExtArgs>
+        create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
-    /**
-     * Create many Users.
-     * @param {UserCreateManyArgs} args - Arguments to create many Users.
-     * @example
-     * // Create many Users
-     * const user = await prisma.user.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Create many Users and returns the data saved in the database.
-     * @param {UserCreateManyAndReturnArgs} args - Arguments to create many Users.
-     * @example
-     * // Create many Users
-     * const user = await prisma.user.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Users and only return the `id`
-     * const userWithIdOnly = await prisma.user.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn">>
+        createManyAndReturn<T extends UserCreateManyAndReturnArgs>(args?: SelectSubset<T, UserCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "createManyAndReturn">>
 
-    /**
-     * Delete a User.
-     * @param {UserDeleteArgs} args - Arguments to delete one User.
-     * @example
-     * // Delete one User
-     * const User = await prisma.user.delete({
-     *   where: {
-     *     // ... filter to delete one User
-     *   }
-     * })
-     * 
-     */
-    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+        delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
-    /**
-     * Update one User.
-     * @param {UserUpdateArgs} args - Arguments to update one User.
-     * @example
-     * // Update one User
-     * const user = await prisma.user.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update">, never, ExtArgs>
+        update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
-    /**
-     * Delete zero or more Users.
-     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
-     * @example
-     * // Delete a few Users
-     * const { count } = await prisma.user.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Update zero or more Users.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Users
-     * const user = await prisma.user.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Create or update one User.
-     * @param {UserUpsertArgs} args - Arguments to update or create a User.
-     * @example
-     * // Update or create a User
-     * const user = await prisma.user.upsert({
-     *   create: {
-     *     // ... data to create a User
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the User we want to update
-     *   }
-     * })
-     */
-    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+        upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
 
 
-    /**
-     * Count the number of Users.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserCountArgs} args - Arguments to filter Users to count.
-     * @example
-     * // Count the number of Users
-     * const count = await prisma.user.count({
-     *   where: {
-     *     // ... the filter for the Users we want to count
-     *   }
-     * })
-    **/
-    count<T extends UserCountArgs>(
+        count<T extends UserCountArgs>(
       args?: Subset<T, UserCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
@@ -1654,51 +1076,9 @@ export namespace Prisma {
         : number
     >
 
-    /**
-     * Allows you to perform aggregations operations on a User.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+        aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
 
-    /**
-     * Group by User.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {UserGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
+        groupBy<
       T extends UserGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
@@ -1756,50 +1136,22 @@ export namespace Prisma {
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
     >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the User model
-   */
-  readonly fields: UserFieldRefs;
+    readonly fields: UserFieldRefs;
   }
 
-  /**
-   * The delegate class that acts as a "Promise-like" for User.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     cars<T extends User$carsArgs<ExtArgs> = {}>(args?: Subset<T, User$carsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findMany"> | Null>
     bookings<T extends User$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, User$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany"> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+        then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+        catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+        finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
 
 
 
-  /**
-   * Fields of the User model
-   */ 
+   
   interface UserFieldRefs {
     readonly id: FieldRef<"User", 'String'>
     readonly email: FieldRef<"User", 'String'>
@@ -1811,326 +1163,100 @@ export namespace Prisma {
   }
     
 
-  // Custom InputTypes
-  /**
-   * User findUnique
-   */
-  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where: UserWhereUniqueInput
+  
+    export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        where: UserWhereUniqueInput
   }
 
-  /**
-   * User findUniqueOrThrow
-   */
-  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where: UserWhereUniqueInput
+    export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        where: UserWhereUniqueInput
   }
 
-  /**
-   * User findFirst
-   */
-  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Users.
-     */
+    export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        where?: UserWhereInput
+        orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+        cursor?: UserWhereUniqueInput
+        take?: number
+        skip?: number
+        distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+    export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        where?: UserWhereInput
+        orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+        cursor?: UserWhereUniqueInput
+        take?: number
+        skip?: number
+        distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+    export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        where?: UserWhereInput
+        orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+        cursor?: UserWhereUniqueInput
+        take?: number
+        skip?: number
     distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
   }
 
-  /**
-   * User findFirstOrThrow
-   */
-  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which User to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Users.
-     */
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        data: XOR<UserCreateInput, UserUncheckedCreateInput>
   }
 
-  /**
-   * User findMany
-   */
-  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter, which Users to fetch.
-     */
-    where?: UserWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Users to fetch.
-     */
-    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Users.
-     */
-    cursor?: UserWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Users from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Users.
-     */
-    skip?: number
-    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+    export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        data: UserCreateManyInput | UserCreateManyInput[]
   }
 
-  /**
-   * User create
-   */
-  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The data needed to create a User.
-     */
-    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+    export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelectCreateManyAndReturn<ExtArgs> | null
+        data: UserCreateManyInput | UserCreateManyInput[]
   }
 
-  /**
-   * User createMany
-   */
-  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Users.
-     */
-    data: UserCreateManyInput | UserCreateManyInput[]
+    export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+        where: UserWhereUniqueInput
   }
 
-  /**
-   * User createManyAndReturn
-   */
-  export type UserCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Users.
-     */
-    data: UserCreateManyInput | UserCreateManyInput[]
+    export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+        where?: UserWhereInput
   }
 
-  /**
-   * User update
-   */
-  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The data needed to update a User.
-     */
-    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
-    /**
-     * Choose, which User to update.
-     */
-    where: UserWhereUniqueInput
+    export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        where: UserWhereUniqueInput
+        create: XOR<UserCreateInput, UserUncheckedCreateInput>
+        update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
   }
 
-  /**
-   * User updateMany
-   */
-  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Users.
-     */
-    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
-    /**
-     * Filter which Users to update
-     */
-    where?: UserWhereInput
+    export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
+        where: UserWhereUniqueInput
   }
 
-  /**
-   * User upsert
-   */
-  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * The filter to search for the User to update in case it exists.
-     */
-    where: UserWhereUniqueInput
-    /**
-     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
-     */
-    create: XOR<UserCreateInput, UserUncheckedCreateInput>
-    /**
-     * In case the User was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        where?: UserWhereInput
   }
 
-  /**
-   * User delete
-   */
-  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
-    /**
-     * Filter which User to delete.
-     */
-    where: UserWhereUniqueInput
-  }
-
-  /**
-   * User deleteMany
-   */
-  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Users to delete
-     */
-    where?: UserWhereInput
-  }
-
-  /**
-   * User.cars
-   */
-  export type User$carsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
+    export type User$carsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
     where?: CarWhereInput
     orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
     cursor?: CarWhereUniqueInput
@@ -2139,18 +1265,9 @@ export namespace Prisma {
     distinct?: CarScalarFieldEnum | CarScalarFieldEnum[]
   }
 
-  /**
-   * User.bookings
-   */
-  export type User$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
+    export type User$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
     where?: BookingWhereInput
     orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
     cursor?: BookingWhereUniqueInput
@@ -2159,25 +1276,13 @@ export namespace Prisma {
     distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
   }
 
-  /**
-   * User without action
-   */
-  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the User
-     */
-    select?: UserSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: UserInclude<ExtArgs> | null
+    export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: UserSelect<ExtArgs> | null
+        include?: UserInclude<ExtArgs> | null
   }
 
 
-  /**
-   * Model Car
-   */
-
+  
   export type AggregateCar = {
     _count: CarCountAggregateOutputType | null
     _avg: CarAvgAggregateOutputType | null
@@ -2330,64 +1435,16 @@ export namespace Prisma {
   }
 
   export type CarAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Car to aggregate.
-     */
-    where?: CarWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Cars to fetch.
-     */
-    orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: CarWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Cars from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Cars.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Cars
-    **/
-    _count?: true | CarCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: CarAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: CarSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: CarMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: CarMaxAggregateInputType
+        where?: CarWhereInput
+        orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
+        cursor?: CarWhereUniqueInput
+        take?: number
+        skip?: number
+        _count?: true | CarCountAggregateInputType
+        _avg?: CarAvgAggregateInputType
+        _sum?: CarSumAggregateInputType
+        _min?: CarMinAggregateInputType
+        _max?: CarMaxAggregateInputType
   }
 
   export type GetCarAggregateType<T extends CarAggregateArgs> = {
@@ -2557,232 +1614,34 @@ export namespace Prisma {
 
   export interface CarDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Car'], meta: { name: 'Car' } }
-    /**
-     * Find zero or one Car that matches the filter.
-     * @param {CarFindUniqueArgs} args - Arguments to find a Car
-     * @example
-     * // Get one Car
-     * const car = await prisma.car.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends CarFindUniqueArgs>(args: SelectSubset<T, CarFindUniqueArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+        findUnique<T extends CarFindUniqueArgs>(args: SelectSubset<T, CarFindUniqueArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
-    /**
-     * Find one Car that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {CarFindUniqueOrThrowArgs} args - Arguments to find a Car
-     * @example
-     * // Get one Car
-     * const car = await prisma.car.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends CarFindUniqueOrThrowArgs>(args: SelectSubset<T, CarFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+        findUniqueOrThrow<T extends CarFindUniqueOrThrowArgs>(args: SelectSubset<T, CarFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
-    /**
-     * Find the first Car that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CarFindFirstArgs} args - Arguments to find a Car
-     * @example
-     * // Get one Car
-     * const car = await prisma.car.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends CarFindFirstArgs>(args?: SelectSubset<T, CarFindFirstArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+        findFirst<T extends CarFindFirstArgs>(args?: SelectSubset<T, CarFindFirstArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
-    /**
-     * Find the first Car that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CarFindFirstOrThrowArgs} args - Arguments to find a Car
-     * @example
-     * // Get one Car
-     * const car = await prisma.car.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends CarFindFirstOrThrowArgs>(args?: SelectSubset<T, CarFindFirstOrThrowArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+        findFirstOrThrow<T extends CarFindFirstOrThrowArgs>(args?: SelectSubset<T, CarFindFirstOrThrowArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
-    /**
-     * Find zero or more Cars that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CarFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Cars
-     * const cars = await prisma.car.findMany()
-     * 
-     * // Get first 10 Cars
-     * const cars = await prisma.car.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const carWithIdOnly = await prisma.car.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends CarFindManyArgs>(args?: SelectSubset<T, CarFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findMany">>
+        findMany<T extends CarFindManyArgs>(args?: SelectSubset<T, CarFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findMany">>
 
-    /**
-     * Create a Car.
-     * @param {CarCreateArgs} args - Arguments to create a Car.
-     * @example
-     * // Create one Car
-     * const Car = await prisma.car.create({
-     *   data: {
-     *     // ... data to create a Car
-     *   }
-     * })
-     * 
-     */
-    create<T extends CarCreateArgs>(args: SelectSubset<T, CarCreateArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "create">, never, ExtArgs>
+        create<T extends CarCreateArgs>(args: SelectSubset<T, CarCreateArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
-    /**
-     * Create many Cars.
-     * @param {CarCreateManyArgs} args - Arguments to create many Cars.
-     * @example
-     * // Create many Cars
-     * const car = await prisma.car.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends CarCreateManyArgs>(args?: SelectSubset<T, CarCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        createMany<T extends CarCreateManyArgs>(args?: SelectSubset<T, CarCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Create many Cars and returns the data saved in the database.
-     * @param {CarCreateManyAndReturnArgs} args - Arguments to create many Cars.
-     * @example
-     * // Create many Cars
-     * const car = await prisma.car.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Cars and only return the `id`
-     * const carWithIdOnly = await prisma.car.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends CarCreateManyAndReturnArgs>(args?: SelectSubset<T, CarCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "createManyAndReturn">>
+        createManyAndReturn<T extends CarCreateManyAndReturnArgs>(args?: SelectSubset<T, CarCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "createManyAndReturn">>
 
-    /**
-     * Delete a Car.
-     * @param {CarDeleteArgs} args - Arguments to delete one Car.
-     * @example
-     * // Delete one Car
-     * const Car = await prisma.car.delete({
-     *   where: {
-     *     // ... filter to delete one Car
-     *   }
-     * })
-     * 
-     */
-    delete<T extends CarDeleteArgs>(args: SelectSubset<T, CarDeleteArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+        delete<T extends CarDeleteArgs>(args: SelectSubset<T, CarDeleteArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
-    /**
-     * Update one Car.
-     * @param {CarUpdateArgs} args - Arguments to update one Car.
-     * @example
-     * // Update one Car
-     * const car = await prisma.car.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends CarUpdateArgs>(args: SelectSubset<T, CarUpdateArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "update">, never, ExtArgs>
+        update<T extends CarUpdateArgs>(args: SelectSubset<T, CarUpdateArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
-    /**
-     * Delete zero or more Cars.
-     * @param {CarDeleteManyArgs} args - Arguments to filter Cars to delete.
-     * @example
-     * // Delete a few Cars
-     * const { count } = await prisma.car.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends CarDeleteManyArgs>(args?: SelectSubset<T, CarDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        deleteMany<T extends CarDeleteManyArgs>(args?: SelectSubset<T, CarDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Update zero or more Cars.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CarUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Cars
-     * const car = await prisma.car.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends CarUpdateManyArgs>(args: SelectSubset<T, CarUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        updateMany<T extends CarUpdateManyArgs>(args: SelectSubset<T, CarUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Create or update one Car.
-     * @param {CarUpsertArgs} args - Arguments to update or create a Car.
-     * @example
-     * // Update or create a Car
-     * const car = await prisma.car.upsert({
-     *   create: {
-     *     // ... data to create a Car
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Car we want to update
-     *   }
-     * })
-     */
-    upsert<T extends CarUpsertArgs>(args: SelectSubset<T, CarUpsertArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+        upsert<T extends CarUpsertArgs>(args: SelectSubset<T, CarUpsertArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
 
 
-    /**
-     * Count the number of Cars.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CarCountArgs} args - Arguments to filter Cars to count.
-     * @example
-     * // Count the number of Cars
-     * const count = await prisma.car.count({
-     *   where: {
-     *     // ... the filter for the Cars we want to count
-     *   }
-     * })
-    **/
-    count<T extends CarCountArgs>(
+        count<T extends CarCountArgs>(
       args?: Subset<T, CarCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
@@ -2792,51 +1651,9 @@ export namespace Prisma {
         : number
     >
 
-    /**
-     * Allows you to perform aggregations operations on a Car.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CarAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends CarAggregateArgs>(args: Subset<T, CarAggregateArgs>): Prisma.PrismaPromise<GetCarAggregateType<T>>
+        aggregate<T extends CarAggregateArgs>(args: Subset<T, CarAggregateArgs>): Prisma.PrismaPromise<GetCarAggregateType<T>>
 
-    /**
-     * Group by Car.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {CarGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
+        groupBy<
       T extends CarGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
@@ -2894,51 +1711,23 @@ export namespace Prisma {
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
     >(args: SubsetIntersection<T, CarGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCarGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Car model
-   */
-  readonly fields: CarFieldRefs;
+    readonly fields: CarFieldRefs;
   }
 
-  /**
-   * The delegate class that acts as a "Promise-like" for Car.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__CarClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    export interface Prisma__CarClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     owner<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     bookings<T extends Car$bookingsArgs<ExtArgs> = {}>(args?: Subset<T, Car$bookingsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany"> | Null>
     damageReports<T extends Car$damageReportsArgs<ExtArgs> = {}>(args?: Subset<T, Car$damageReportsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findMany"> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+        then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+        catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+        finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
 
 
 
-  /**
-   * Fields of the Car model
-   */ 
+   
   interface CarFieldRefs {
     readonly id: FieldRef<"Car", 'String'>
     readonly brand: FieldRef<"Car", 'String'>
@@ -2958,330 +1747,101 @@ export namespace Prisma {
   }
     
 
-  // Custom InputTypes
-  /**
-   * Car findUnique
-   */
-  export type CarFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * Filter, which Car to fetch.
-     */
-    where: CarWhereUniqueInput
+  
+    export type CarFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        where: CarWhereUniqueInput
   }
 
-  /**
-   * Car findUniqueOrThrow
-   */
-  export type CarFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * Filter, which Car to fetch.
-     */
-    where: CarWhereUniqueInput
+    export type CarFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        where: CarWhereUniqueInput
   }
 
-  /**
-   * Car findFirst
-   */
-  export type CarFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * Filter, which Car to fetch.
-     */
-    where?: CarWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Cars to fetch.
-     */
-    orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Cars.
-     */
-    cursor?: CarWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Cars from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Cars.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Cars.
-     */
+    export type CarFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        where?: CarWhereInput
+        orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
+        cursor?: CarWhereUniqueInput
+        take?: number
+        skip?: number
+        distinct?: CarScalarFieldEnum | CarScalarFieldEnum[]
+  }
+
+    export type CarFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        where?: CarWhereInput
+        orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
+        cursor?: CarWhereUniqueInput
+        take?: number
+        skip?: number
+        distinct?: CarScalarFieldEnum | CarScalarFieldEnum[]
+  }
+
+    export type CarFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        where?: CarWhereInput
+        orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
+        cursor?: CarWhereUniqueInput
+        take?: number
+        skip?: number
     distinct?: CarScalarFieldEnum | CarScalarFieldEnum[]
   }
 
-  /**
-   * Car findFirstOrThrow
-   */
-  export type CarFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * Filter, which Car to fetch.
-     */
-    where?: CarWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Cars to fetch.
-     */
-    orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Cars.
-     */
-    cursor?: CarWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Cars from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Cars.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Cars.
-     */
-    distinct?: CarScalarFieldEnum | CarScalarFieldEnum[]
+    export type CarCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        data: XOR<CarCreateInput, CarUncheckedCreateInput>
   }
 
-  /**
-   * Car findMany
-   */
-  export type CarFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * Filter, which Cars to fetch.
-     */
-    where?: CarWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Cars to fetch.
-     */
-    orderBy?: CarOrderByWithRelationInput | CarOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Cars.
-     */
-    cursor?: CarWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Cars from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Cars.
-     */
-    skip?: number
-    distinct?: CarScalarFieldEnum | CarScalarFieldEnum[]
+    export type CarCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        data: CarCreateManyInput | CarCreateManyInput[]
   }
 
-  /**
-   * Car create
-   */
-  export type CarCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Car.
-     */
-    data: XOR<CarCreateInput, CarUncheckedCreateInput>
+    export type CarCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelectCreateManyAndReturn<ExtArgs> | null
+        data: CarCreateManyInput | CarCreateManyInput[]
+        include?: CarIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
-  /**
-   * Car createMany
-   */
-  export type CarCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Cars.
-     */
-    data: CarCreateManyInput | CarCreateManyInput[]
+    export type CarUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        data: XOR<CarUpdateInput, CarUncheckedUpdateInput>
+        where: CarWhereUniqueInput
   }
 
-  /**
-   * Car createManyAndReturn
-   */
-  export type CarCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Cars.
-     */
-    data: CarCreateManyInput | CarCreateManyInput[]
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarIncludeCreateManyAndReturn<ExtArgs> | null
+    export type CarUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        data: XOR<CarUpdateManyMutationInput, CarUncheckedUpdateManyInput>
+        where?: CarWhereInput
   }
 
-  /**
-   * Car update
-   */
-  export type CarUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Car.
-     */
-    data: XOR<CarUpdateInput, CarUncheckedUpdateInput>
-    /**
-     * Choose, which Car to update.
-     */
-    where: CarWhereUniqueInput
+    export type CarUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        where: CarWhereUniqueInput
+        create: XOR<CarCreateInput, CarUncheckedCreateInput>
+        update: XOR<CarUpdateInput, CarUncheckedUpdateInput>
   }
 
-  /**
-   * Car updateMany
-   */
-  export type CarUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Cars.
-     */
-    data: XOR<CarUpdateManyMutationInput, CarUncheckedUpdateManyInput>
-    /**
-     * Filter which Cars to update
-     */
-    where?: CarWhereInput
+    export type CarDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
+        where: CarWhereUniqueInput
   }
 
-  /**
-   * Car upsert
-   */
-  export type CarUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Car to update in case it exists.
-     */
-    where: CarWhereUniqueInput
-    /**
-     * In case the Car found by the `where` argument doesn't exist, create a new Car with this data.
-     */
-    create: XOR<CarCreateInput, CarUncheckedCreateInput>
-    /**
-     * In case the Car was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<CarUpdateInput, CarUncheckedUpdateInput>
+    export type CarDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        where?: CarWhereInput
   }
 
-  /**
-   * Car delete
-   */
-  export type CarDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
-    /**
-     * Filter which Car to delete.
-     */
-    where: CarWhereUniqueInput
-  }
-
-  /**
-   * Car deleteMany
-   */
-  export type CarDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Cars to delete
-     */
-    where?: CarWhereInput
-  }
-
-  /**
-   * Car.bookings
-   */
-  export type Car$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
+    export type Car$bookingsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
     where?: BookingWhereInput
     orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
     cursor?: BookingWhereUniqueInput
@@ -3290,18 +1850,9 @@ export namespace Prisma {
     distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
   }
 
-  /**
-   * Car.damageReports
-   */
-  export type Car$damageReportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
+    export type Car$damageReportsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
     where?: DamageReportWhereInput
     orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
     cursor?: DamageReportWhereUniqueInput
@@ -3310,25 +1861,13 @@ export namespace Prisma {
     distinct?: DamageReportScalarFieldEnum | DamageReportScalarFieldEnum[]
   }
 
-  /**
-   * Car without action
-   */
-  export type CarDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Car
-     */
-    select?: CarSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: CarInclude<ExtArgs> | null
+    export type CarDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: CarSelect<ExtArgs> | null
+        include?: CarInclude<ExtArgs> | null
   }
 
 
-  /**
-   * Model Booking
-   */
-
+  
   export type AggregateBooking = {
     _count: BookingCountAggregateOutputType | null
     _avg: BookingAvgAggregateOutputType | null
@@ -3435,64 +1974,16 @@ export namespace Prisma {
   }
 
   export type BookingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Booking to aggregate.
-     */
-    where?: BookingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Bookings to fetch.
-     */
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: BookingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Bookings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Bookings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Bookings
-    **/
-    _count?: true | BookingCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to average
-    **/
-    _avg?: BookingAvgAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to sum
-    **/
-    _sum?: BookingSumAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: BookingMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: BookingMaxAggregateInputType
+        where?: BookingWhereInput
+        orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+        cursor?: BookingWhereUniqueInput
+        take?: number
+        skip?: number
+        _count?: true | BookingCountAggregateInputType
+        _avg?: BookingAvgAggregateInputType
+        _sum?: BookingSumAggregateInputType
+        _min?: BookingMinAggregateInputType
+        _max?: BookingMaxAggregateInputType
   }
 
   export type GetBookingAggregateType<T extends BookingAggregateArgs> = {
@@ -3634,232 +2125,34 @@ export namespace Prisma {
 
   export interface BookingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Booking'], meta: { name: 'Booking' } }
-    /**
-     * Find zero or one Booking that matches the filter.
-     * @param {BookingFindUniqueArgs} args - Arguments to find a Booking
-     * @example
-     * // Get one Booking
-     * const booking = await prisma.booking.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends BookingFindUniqueArgs>(args: SelectSubset<T, BookingFindUniqueArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+        findUnique<T extends BookingFindUniqueArgs>(args: SelectSubset<T, BookingFindUniqueArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
-    /**
-     * Find one Booking that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {BookingFindUniqueOrThrowArgs} args - Arguments to find a Booking
-     * @example
-     * // Get one Booking
-     * const booking = await prisma.booking.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends BookingFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+        findUniqueOrThrow<T extends BookingFindUniqueOrThrowArgs>(args: SelectSubset<T, BookingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
-    /**
-     * Find the first Booking that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BookingFindFirstArgs} args - Arguments to find a Booking
-     * @example
-     * // Get one Booking
-     * const booking = await prisma.booking.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends BookingFindFirstArgs>(args?: SelectSubset<T, BookingFindFirstArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+        findFirst<T extends BookingFindFirstArgs>(args?: SelectSubset<T, BookingFindFirstArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
-    /**
-     * Find the first Booking that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BookingFindFirstOrThrowArgs} args - Arguments to find a Booking
-     * @example
-     * // Get one Booking
-     * const booking = await prisma.booking.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends BookingFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+        findFirstOrThrow<T extends BookingFindFirstOrThrowArgs>(args?: SelectSubset<T, BookingFindFirstOrThrowArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
-    /**
-     * Find zero or more Bookings that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BookingFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Bookings
-     * const bookings = await prisma.booking.findMany()
-     * 
-     * // Get first 10 Bookings
-     * const bookings = await prisma.booking.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const bookingWithIdOnly = await prisma.booking.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends BookingFindManyArgs>(args?: SelectSubset<T, BookingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany">>
+        findMany<T extends BookingFindManyArgs>(args?: SelectSubset<T, BookingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "findMany">>
 
-    /**
-     * Create a Booking.
-     * @param {BookingCreateArgs} args - Arguments to create a Booking.
-     * @example
-     * // Create one Booking
-     * const Booking = await prisma.booking.create({
-     *   data: {
-     *     // ... data to create a Booking
-     *   }
-     * })
-     * 
-     */
-    create<T extends BookingCreateArgs>(args: SelectSubset<T, BookingCreateArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "create">, never, ExtArgs>
+        create<T extends BookingCreateArgs>(args: SelectSubset<T, BookingCreateArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
-    /**
-     * Create many Bookings.
-     * @param {BookingCreateManyArgs} args - Arguments to create many Bookings.
-     * @example
-     * // Create many Bookings
-     * const booking = await prisma.booking.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends BookingCreateManyArgs>(args?: SelectSubset<T, BookingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        createMany<T extends BookingCreateManyArgs>(args?: SelectSubset<T, BookingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Create many Bookings and returns the data saved in the database.
-     * @param {BookingCreateManyAndReturnArgs} args - Arguments to create many Bookings.
-     * @example
-     * // Create many Bookings
-     * const booking = await prisma.booking.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Bookings and only return the `id`
-     * const bookingWithIdOnly = await prisma.booking.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends BookingCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "createManyAndReturn">>
+        createManyAndReturn<T extends BookingCreateManyAndReturnArgs>(args?: SelectSubset<T, BookingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "createManyAndReturn">>
 
-    /**
-     * Delete a Booking.
-     * @param {BookingDeleteArgs} args - Arguments to delete one Booking.
-     * @example
-     * // Delete one Booking
-     * const Booking = await prisma.booking.delete({
-     *   where: {
-     *     // ... filter to delete one Booking
-     *   }
-     * })
-     * 
-     */
-    delete<T extends BookingDeleteArgs>(args: SelectSubset<T, BookingDeleteArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+        delete<T extends BookingDeleteArgs>(args: SelectSubset<T, BookingDeleteArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
-    /**
-     * Update one Booking.
-     * @param {BookingUpdateArgs} args - Arguments to update one Booking.
-     * @example
-     * // Update one Booking
-     * const booking = await prisma.booking.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends BookingUpdateArgs>(args: SelectSubset<T, BookingUpdateArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "update">, never, ExtArgs>
+        update<T extends BookingUpdateArgs>(args: SelectSubset<T, BookingUpdateArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
-    /**
-     * Delete zero or more Bookings.
-     * @param {BookingDeleteManyArgs} args - Arguments to filter Bookings to delete.
-     * @example
-     * // Delete a few Bookings
-     * const { count } = await prisma.booking.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends BookingDeleteManyArgs>(args?: SelectSubset<T, BookingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        deleteMany<T extends BookingDeleteManyArgs>(args?: SelectSubset<T, BookingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Update zero or more Bookings.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BookingUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Bookings
-     * const booking = await prisma.booking.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends BookingUpdateManyArgs>(args: SelectSubset<T, BookingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        updateMany<T extends BookingUpdateManyArgs>(args: SelectSubset<T, BookingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Create or update one Booking.
-     * @param {BookingUpsertArgs} args - Arguments to update or create a Booking.
-     * @example
-     * // Update or create a Booking
-     * const booking = await prisma.booking.upsert({
-     *   create: {
-     *     // ... data to create a Booking
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Booking we want to update
-     *   }
-     * })
-     */
-    upsert<T extends BookingUpsertArgs>(args: SelectSubset<T, BookingUpsertArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+        upsert<T extends BookingUpsertArgs>(args: SelectSubset<T, BookingUpsertArgs<ExtArgs>>): Prisma__BookingClient<$Result.GetResult<Prisma.$BookingPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
 
 
-    /**
-     * Count the number of Bookings.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BookingCountArgs} args - Arguments to filter Bookings to count.
-     * @example
-     * // Count the number of Bookings
-     * const count = await prisma.booking.count({
-     *   where: {
-     *     // ... the filter for the Bookings we want to count
-     *   }
-     * })
-    **/
-    count<T extends BookingCountArgs>(
+        count<T extends BookingCountArgs>(
       args?: Subset<T, BookingCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
@@ -3869,51 +2162,9 @@ export namespace Prisma {
         : number
     >
 
-    /**
-     * Allows you to perform aggregations operations on a Booking.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BookingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends BookingAggregateArgs>(args: Subset<T, BookingAggregateArgs>): Prisma.PrismaPromise<GetBookingAggregateType<T>>
+        aggregate<T extends BookingAggregateArgs>(args: Subset<T, BookingAggregateArgs>): Prisma.PrismaPromise<GetBookingAggregateType<T>>
 
-    /**
-     * Group by Booking.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {BookingGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
+        groupBy<
       T extends BookingGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
@@ -3971,50 +2222,22 @@ export namespace Prisma {
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
     >(args: SubsetIntersection<T, BookingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBookingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Booking model
-   */
-  readonly fields: BookingFieldRefs;
+    readonly fields: BookingFieldRefs;
   }
 
-  /**
-   * The delegate class that acts as a "Promise-like" for Booking.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__BookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    export interface Prisma__BookingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     customer<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
     car<T extends CarDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarDefaultArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+        then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+        catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+        finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
 
 
 
-  /**
-   * Fields of the Booking model
-   */ 
+   
   interface BookingFieldRefs {
     readonly id: FieldRef<"Booking", 'String'>
     readonly startDate: FieldRef<"Booking", 'DateTime'>
@@ -4029,337 +2252,105 @@ export namespace Prisma {
   }
     
 
-  // Custom InputTypes
-  /**
-   * Booking findUnique
-   */
-  export type BookingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * Filter, which Booking to fetch.
-     */
-    where: BookingWhereUniqueInput
+  
+    export type BookingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        where: BookingWhereUniqueInput
   }
 
-  /**
-   * Booking findUniqueOrThrow
-   */
-  export type BookingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * Filter, which Booking to fetch.
-     */
-    where: BookingWhereUniqueInput
+    export type BookingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        where: BookingWhereUniqueInput
   }
 
-  /**
-   * Booking findFirst
-   */
-  export type BookingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * Filter, which Booking to fetch.
-     */
-    where?: BookingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Bookings to fetch.
-     */
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Bookings.
-     */
-    cursor?: BookingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Bookings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Bookings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Bookings.
-     */
+    export type BookingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        where?: BookingWhereInput
+        orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+        cursor?: BookingWhereUniqueInput
+        take?: number
+        skip?: number
+        distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+  }
+
+    export type BookingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        where?: BookingWhereInput
+        orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+        cursor?: BookingWhereUniqueInput
+        take?: number
+        skip?: number
+        distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+  }
+
+    export type BookingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        where?: BookingWhereInput
+        orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
+        cursor?: BookingWhereUniqueInput
+        take?: number
+        skip?: number
     distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
   }
 
-  /**
-   * Booking findFirstOrThrow
-   */
-  export type BookingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * Filter, which Booking to fetch.
-     */
-    where?: BookingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Bookings to fetch.
-     */
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Bookings.
-     */
-    cursor?: BookingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Bookings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Bookings.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Bookings.
-     */
-    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+    export type BookingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        data: XOR<BookingCreateInput, BookingUncheckedCreateInput>
   }
 
-  /**
-   * Booking findMany
-   */
-  export type BookingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * Filter, which Bookings to fetch.
-     */
-    where?: BookingWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Bookings to fetch.
-     */
-    orderBy?: BookingOrderByWithRelationInput | BookingOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Bookings.
-     */
-    cursor?: BookingWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Bookings from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Bookings.
-     */
-    skip?: number
-    distinct?: BookingScalarFieldEnum | BookingScalarFieldEnum[]
+    export type BookingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        data: BookingCreateManyInput | BookingCreateManyInput[]
   }
 
-  /**
-   * Booking create
-   */
-  export type BookingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Booking.
-     */
-    data: XOR<BookingCreateInput, BookingUncheckedCreateInput>
+    export type BookingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelectCreateManyAndReturn<ExtArgs> | null
+        data: BookingCreateManyInput | BookingCreateManyInput[]
+        include?: BookingIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
-  /**
-   * Booking createMany
-   */
-  export type BookingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Bookings.
-     */
-    data: BookingCreateManyInput | BookingCreateManyInput[]
+    export type BookingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        data: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>
+        where: BookingWhereUniqueInput
   }
 
-  /**
-   * Booking createManyAndReturn
-   */
-  export type BookingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many Bookings.
-     */
-    data: BookingCreateManyInput | BookingCreateManyInput[]
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingIncludeCreateManyAndReturn<ExtArgs> | null
+    export type BookingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyInput>
+        where?: BookingWhereInput
   }
 
-  /**
-   * Booking update
-   */
-  export type BookingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Booking.
-     */
-    data: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>
-    /**
-     * Choose, which Booking to update.
-     */
-    where: BookingWhereUniqueInput
+    export type BookingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        where: BookingWhereUniqueInput
+        create: XOR<BookingCreateInput, BookingUncheckedCreateInput>
+        update: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>
   }
 
-  /**
-   * Booking updateMany
-   */
-  export type BookingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Bookings.
-     */
-    data: XOR<BookingUpdateManyMutationInput, BookingUncheckedUpdateManyInput>
-    /**
-     * Filter which Bookings to update
-     */
-    where?: BookingWhereInput
+    export type BookingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
+        where: BookingWhereUniqueInput
   }
 
-  /**
-   * Booking upsert
-   */
-  export type BookingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Booking to update in case it exists.
-     */
-    where: BookingWhereUniqueInput
-    /**
-     * In case the Booking found by the `where` argument doesn't exist, create a new Booking with this data.
-     */
-    create: XOR<BookingCreateInput, BookingUncheckedCreateInput>
-    /**
-     * In case the Booking was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<BookingUpdateInput, BookingUncheckedUpdateInput>
+    export type BookingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        where?: BookingWhereInput
   }
 
-  /**
-   * Booking delete
-   */
-  export type BookingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
-    /**
-     * Filter which Booking to delete.
-     */
-    where: BookingWhereUniqueInput
-  }
-
-  /**
-   * Booking deleteMany
-   */
-  export type BookingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Bookings to delete
-     */
-    where?: BookingWhereInput
-  }
-
-  /**
-   * Booking without action
-   */
-  export type BookingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Booking
-     */
-    select?: BookingSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: BookingInclude<ExtArgs> | null
+    export type BookingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: BookingSelect<ExtArgs> | null
+        include?: BookingInclude<ExtArgs> | null
   }
 
 
-  /**
-   * Model DamageReport
-   */
-
+  
   export type AggregateDamageReport = {
     _count: DamageReportCountAggregateOutputType | null
     _min: DamageReportMinAggregateOutputType | null
@@ -4418,52 +2409,14 @@ export namespace Prisma {
   }
 
   export type DamageReportAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which DamageReport to aggregate.
-     */
-    where?: DamageReportWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DamageReports to fetch.
-     */
-    orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: DamageReportWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DamageReports from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DamageReports.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned DamageReports
-    **/
-    _count?: true | DamageReportCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: DamageReportMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: DamageReportMaxAggregateInputType
+        where?: DamageReportWhereInput
+        orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
+        cursor?: DamageReportWhereUniqueInput
+        take?: number
+        skip?: number
+        _count?: true | DamageReportCountAggregateInputType
+        _min?: DamageReportMinAggregateInputType
+        _max?: DamageReportMaxAggregateInputType
   }
 
   export type GetDamageReportAggregateType<T extends DamageReportAggregateArgs> = {
@@ -4571,232 +2524,34 @@ export namespace Prisma {
 
   export interface DamageReportDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
     [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['DamageReport'], meta: { name: 'DamageReport' } }
-    /**
-     * Find zero or one DamageReport that matches the filter.
-     * @param {DamageReportFindUniqueArgs} args - Arguments to find a DamageReport
-     * @example
-     * // Get one DamageReport
-     * const damageReport = await prisma.damageReport.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends DamageReportFindUniqueArgs>(args: SelectSubset<T, DamageReportFindUniqueArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+        findUnique<T extends DamageReportFindUniqueArgs>(args: SelectSubset<T, DamageReportFindUniqueArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
 
-    /**
-     * Find one DamageReport that matches the filter or throw an error with `error.code='P2025'` 
-     * if no matches were found.
-     * @param {DamageReportFindUniqueOrThrowArgs} args - Arguments to find a DamageReport
-     * @example
-     * // Get one DamageReport
-     * const damageReport = await prisma.damageReport.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends DamageReportFindUniqueOrThrowArgs>(args: SelectSubset<T, DamageReportFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+        findUniqueOrThrow<T extends DamageReportFindUniqueOrThrowArgs>(args: SelectSubset<T, DamageReportFindUniqueOrThrowArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
 
-    /**
-     * Find the first DamageReport that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DamageReportFindFirstArgs} args - Arguments to find a DamageReport
-     * @example
-     * // Get one DamageReport
-     * const damageReport = await prisma.damageReport.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends DamageReportFindFirstArgs>(args?: SelectSubset<T, DamageReportFindFirstArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+        findFirst<T extends DamageReportFindFirstArgs>(args?: SelectSubset<T, DamageReportFindFirstArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
 
-    /**
-     * Find the first DamageReport that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DamageReportFindFirstOrThrowArgs} args - Arguments to find a DamageReport
-     * @example
-     * // Get one DamageReport
-     * const damageReport = await prisma.damageReport.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends DamageReportFindFirstOrThrowArgs>(args?: SelectSubset<T, DamageReportFindFirstOrThrowArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+        findFirstOrThrow<T extends DamageReportFindFirstOrThrowArgs>(args?: SelectSubset<T, DamageReportFindFirstOrThrowArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
 
-    /**
-     * Find zero or more DamageReports that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DamageReportFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all DamageReports
-     * const damageReports = await prisma.damageReport.findMany()
-     * 
-     * // Get first 10 DamageReports
-     * const damageReports = await prisma.damageReport.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const damageReportWithIdOnly = await prisma.damageReport.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends DamageReportFindManyArgs>(args?: SelectSubset<T, DamageReportFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findMany">>
+        findMany<T extends DamageReportFindManyArgs>(args?: SelectSubset<T, DamageReportFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "findMany">>
 
-    /**
-     * Create a DamageReport.
-     * @param {DamageReportCreateArgs} args - Arguments to create a DamageReport.
-     * @example
-     * // Create one DamageReport
-     * const DamageReport = await prisma.damageReport.create({
-     *   data: {
-     *     // ... data to create a DamageReport
-     *   }
-     * })
-     * 
-     */
-    create<T extends DamageReportCreateArgs>(args: SelectSubset<T, DamageReportCreateArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "create">, never, ExtArgs>
+        create<T extends DamageReportCreateArgs>(args: SelectSubset<T, DamageReportCreateArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "create">, never, ExtArgs>
 
-    /**
-     * Create many DamageReports.
-     * @param {DamageReportCreateManyArgs} args - Arguments to create many DamageReports.
-     * @example
-     * // Create many DamageReports
-     * const damageReport = await prisma.damageReport.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends DamageReportCreateManyArgs>(args?: SelectSubset<T, DamageReportCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        createMany<T extends DamageReportCreateManyArgs>(args?: SelectSubset<T, DamageReportCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Create many DamageReports and returns the data saved in the database.
-     * @param {DamageReportCreateManyAndReturnArgs} args - Arguments to create many DamageReports.
-     * @example
-     * // Create many DamageReports
-     * const damageReport = await prisma.damageReport.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many DamageReports and only return the `id`
-     * const damageReportWithIdOnly = await prisma.damageReport.createManyAndReturn({ 
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends DamageReportCreateManyAndReturnArgs>(args?: SelectSubset<T, DamageReportCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "createManyAndReturn">>
+        createManyAndReturn<T extends DamageReportCreateManyAndReturnArgs>(args?: SelectSubset<T, DamageReportCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "createManyAndReturn">>
 
-    /**
-     * Delete a DamageReport.
-     * @param {DamageReportDeleteArgs} args - Arguments to delete one DamageReport.
-     * @example
-     * // Delete one DamageReport
-     * const DamageReport = await prisma.damageReport.delete({
-     *   where: {
-     *     // ... filter to delete one DamageReport
-     *   }
-     * })
-     * 
-     */
-    delete<T extends DamageReportDeleteArgs>(args: SelectSubset<T, DamageReportDeleteArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+        delete<T extends DamageReportDeleteArgs>(args: SelectSubset<T, DamageReportDeleteArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "delete">, never, ExtArgs>
 
-    /**
-     * Update one DamageReport.
-     * @param {DamageReportUpdateArgs} args - Arguments to update one DamageReport.
-     * @example
-     * // Update one DamageReport
-     * const damageReport = await prisma.damageReport.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends DamageReportUpdateArgs>(args: SelectSubset<T, DamageReportUpdateArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "update">, never, ExtArgs>
+        update<T extends DamageReportUpdateArgs>(args: SelectSubset<T, DamageReportUpdateArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "update">, never, ExtArgs>
 
-    /**
-     * Delete zero or more DamageReports.
-     * @param {DamageReportDeleteManyArgs} args - Arguments to filter DamageReports to delete.
-     * @example
-     * // Delete a few DamageReports
-     * const { count } = await prisma.damageReport.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends DamageReportDeleteManyArgs>(args?: SelectSubset<T, DamageReportDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        deleteMany<T extends DamageReportDeleteManyArgs>(args?: SelectSubset<T, DamageReportDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Update zero or more DamageReports.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DamageReportUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many DamageReports
-     * const damageReport = await prisma.damageReport.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends DamageReportUpdateManyArgs>(args: SelectSubset<T, DamageReportUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+        updateMany<T extends DamageReportUpdateManyArgs>(args: SelectSubset<T, DamageReportUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
-    /**
-     * Create or update one DamageReport.
-     * @param {DamageReportUpsertArgs} args - Arguments to update or create a DamageReport.
-     * @example
-     * // Update or create a DamageReport
-     * const damageReport = await prisma.damageReport.upsert({
-     *   create: {
-     *     // ... data to create a DamageReport
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the DamageReport we want to update
-     *   }
-     * })
-     */
-    upsert<T extends DamageReportUpsertArgs>(args: SelectSubset<T, DamageReportUpsertArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+        upsert<T extends DamageReportUpsertArgs>(args: SelectSubset<T, DamageReportUpsertArgs<ExtArgs>>): Prisma__DamageReportClient<$Result.GetResult<Prisma.$DamageReportPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
 
 
-    /**
-     * Count the number of DamageReports.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DamageReportCountArgs} args - Arguments to filter DamageReports to count.
-     * @example
-     * // Count the number of DamageReports
-     * const count = await prisma.damageReport.count({
-     *   where: {
-     *     // ... the filter for the DamageReports we want to count
-     *   }
-     * })
-    **/
-    count<T extends DamageReportCountArgs>(
+        count<T extends DamageReportCountArgs>(
       args?: Subset<T, DamageReportCountArgs>,
     ): Prisma.PrismaPromise<
       T extends $Utils.Record<'select', any>
@@ -4806,51 +2561,9 @@ export namespace Prisma {
         : number
     >
 
-    /**
-     * Allows you to perform aggregations operations on a DamageReport.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DamageReportAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends DamageReportAggregateArgs>(args: Subset<T, DamageReportAggregateArgs>): Prisma.PrismaPromise<GetDamageReportAggregateType<T>>
+        aggregate<T extends DamageReportAggregateArgs>(args: Subset<T, DamageReportAggregateArgs>): Prisma.PrismaPromise<GetDamageReportAggregateType<T>>
 
-    /**
-     * Group by DamageReport.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {DamageReportGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
+        groupBy<
       T extends DamageReportGroupByArgs,
       HasSelectOrTake extends Or<
         Extends<'skip', Keys<T>>,
@@ -4908,49 +2621,21 @@ export namespace Prisma {
             : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
         }[OrderFields]
     >(args: SubsetIntersection<T, DamageReportGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDamageReportGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the DamageReport model
-   */
-  readonly fields: DamageReportFieldRefs;
+    readonly fields: DamageReportFieldRefs;
   }
 
-  /**
-   * The delegate class that acts as a "Promise-like" for DamageReport.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__DamageReportClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    export interface Prisma__DamageReportClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     car<T extends CarDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CarDefaultArgs<ExtArgs>>): Prisma__CarClient<$Result.GetResult<Prisma.$CarPayload<ExtArgs>, T, "findUniqueOrThrow"> | Null, Null, ExtArgs>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+        then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+        catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+        finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
   }
 
 
 
 
-  /**
-   * Fields of the DamageReport model
-   */ 
+   
   interface DamageReportFieldRefs {
     readonly id: FieldRef<"DamageReport", 'String'>
     readonly description: FieldRef<"DamageReport", 'String'>
@@ -4960,337 +2645,105 @@ export namespace Prisma {
   }
     
 
-  // Custom InputTypes
-  /**
-   * DamageReport findUnique
-   */
-  export type DamageReportFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * Filter, which DamageReport to fetch.
-     */
-    where: DamageReportWhereUniqueInput
+  
+    export type DamageReportFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        where: DamageReportWhereUniqueInput
   }
 
-  /**
-   * DamageReport findUniqueOrThrow
-   */
-  export type DamageReportFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * Filter, which DamageReport to fetch.
-     */
-    where: DamageReportWhereUniqueInput
+    export type DamageReportFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        where: DamageReportWhereUniqueInput
   }
 
-  /**
-   * DamageReport findFirst
-   */
-  export type DamageReportFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * Filter, which DamageReport to fetch.
-     */
-    where?: DamageReportWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DamageReports to fetch.
-     */
-    orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for DamageReports.
-     */
-    cursor?: DamageReportWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DamageReports from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DamageReports.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of DamageReports.
-     */
+    export type DamageReportFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        where?: DamageReportWhereInput
+        orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
+        cursor?: DamageReportWhereUniqueInput
+        take?: number
+        skip?: number
+        distinct?: DamageReportScalarFieldEnum | DamageReportScalarFieldEnum[]
+  }
+
+    export type DamageReportFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        where?: DamageReportWhereInput
+        orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
+        cursor?: DamageReportWhereUniqueInput
+        take?: number
+        skip?: number
+        distinct?: DamageReportScalarFieldEnum | DamageReportScalarFieldEnum[]
+  }
+
+    export type DamageReportFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        where?: DamageReportWhereInput
+        orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
+        cursor?: DamageReportWhereUniqueInput
+        take?: number
+        skip?: number
     distinct?: DamageReportScalarFieldEnum | DamageReportScalarFieldEnum[]
   }
 
-  /**
-   * DamageReport findFirstOrThrow
-   */
-  export type DamageReportFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * Filter, which DamageReport to fetch.
-     */
-    where?: DamageReportWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DamageReports to fetch.
-     */
-    orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for DamageReports.
-     */
-    cursor?: DamageReportWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DamageReports from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DamageReports.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of DamageReports.
-     */
-    distinct?: DamageReportScalarFieldEnum | DamageReportScalarFieldEnum[]
+    export type DamageReportCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        data: XOR<DamageReportCreateInput, DamageReportUncheckedCreateInput>
   }
 
-  /**
-   * DamageReport findMany
-   */
-  export type DamageReportFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * Filter, which DamageReports to fetch.
-     */
-    where?: DamageReportWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of DamageReports to fetch.
-     */
-    orderBy?: DamageReportOrderByWithRelationInput | DamageReportOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing DamageReports.
-     */
-    cursor?: DamageReportWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` DamageReports from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` DamageReports.
-     */
-    skip?: number
-    distinct?: DamageReportScalarFieldEnum | DamageReportScalarFieldEnum[]
+    export type DamageReportCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        data: DamageReportCreateManyInput | DamageReportCreateManyInput[]
   }
 
-  /**
-   * DamageReport create
-   */
-  export type DamageReportCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * The data needed to create a DamageReport.
-     */
-    data: XOR<DamageReportCreateInput, DamageReportUncheckedCreateInput>
+    export type DamageReportCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelectCreateManyAndReturn<ExtArgs> | null
+        data: DamageReportCreateManyInput | DamageReportCreateManyInput[]
+        include?: DamageReportIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
-  /**
-   * DamageReport createMany
-   */
-  export type DamageReportCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many DamageReports.
-     */
-    data: DamageReportCreateManyInput | DamageReportCreateManyInput[]
+    export type DamageReportUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        data: XOR<DamageReportUpdateInput, DamageReportUncheckedUpdateInput>
+        where: DamageReportWhereUniqueInput
   }
 
-  /**
-   * DamageReport createManyAndReturn
-   */
-  export type DamageReportCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * The data used to create many DamageReports.
-     */
-    data: DamageReportCreateManyInput | DamageReportCreateManyInput[]
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportIncludeCreateManyAndReturn<ExtArgs> | null
+    export type DamageReportUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        data: XOR<DamageReportUpdateManyMutationInput, DamageReportUncheckedUpdateManyInput>
+        where?: DamageReportWhereInput
   }
 
-  /**
-   * DamageReport update
-   */
-  export type DamageReportUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * The data needed to update a DamageReport.
-     */
-    data: XOR<DamageReportUpdateInput, DamageReportUncheckedUpdateInput>
-    /**
-     * Choose, which DamageReport to update.
-     */
-    where: DamageReportWhereUniqueInput
+    export type DamageReportUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        where: DamageReportWhereUniqueInput
+        create: XOR<DamageReportCreateInput, DamageReportUncheckedCreateInput>
+        update: XOR<DamageReportUpdateInput, DamageReportUncheckedUpdateInput>
   }
 
-  /**
-   * DamageReport updateMany
-   */
-  export type DamageReportUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update DamageReports.
-     */
-    data: XOR<DamageReportUpdateManyMutationInput, DamageReportUncheckedUpdateManyInput>
-    /**
-     * Filter which DamageReports to update
-     */
-    where?: DamageReportWhereInput
+    export type DamageReportDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
+        where: DamageReportWhereUniqueInput
   }
 
-  /**
-   * DamageReport upsert
-   */
-  export type DamageReportUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * The filter to search for the DamageReport to update in case it exists.
-     */
-    where: DamageReportWhereUniqueInput
-    /**
-     * In case the DamageReport found by the `where` argument doesn't exist, create a new DamageReport with this data.
-     */
-    create: XOR<DamageReportCreateInput, DamageReportUncheckedCreateInput>
-    /**
-     * In case the DamageReport was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<DamageReportUpdateInput, DamageReportUncheckedUpdateInput>
+    export type DamageReportDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        where?: DamageReportWhereInput
   }
 
-  /**
-   * DamageReport delete
-   */
-  export type DamageReportDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
-    /**
-     * Filter which DamageReport to delete.
-     */
-    where: DamageReportWhereUniqueInput
-  }
-
-  /**
-   * DamageReport deleteMany
-   */
-  export type DamageReportDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which DamageReports to delete
-     */
-    where?: DamageReportWhereInput
-  }
-
-  /**
-   * DamageReport without action
-   */
-  export type DamageReportDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the DamageReport
-     */
-    select?: DamageReportSelect<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: DamageReportInclude<ExtArgs> | null
+    export type DamageReportDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+        select?: DamageReportSelect<ExtArgs> | null
+        include?: DamageReportInclude<ExtArgs> | null
   }
 
 
-  /**
-   * Enums
-   */
-
+  
   export const TransactionIsolationLevel: {
     Serializable: 'Serializable'
   };
@@ -5375,48 +2828,27 @@ export namespace Prisma {
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
-  /**
-   * Field references 
-   */
+  
 
-
-  /**
-   * Reference to a field of type 'String'
-   */
-  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
     
 
 
-  /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
-  /**
-   * Reference to a field of type 'Int'
-   */
-  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
-  /**
-   * Deep Input Types
-   */
-
+  
 
   export type UserWhereInput = {
     AND?: UserWhereInput | UserWhereInput[]
@@ -7635,44 +5067,17 @@ export namespace Prisma {
 
 
 
-  /**
-   * Aliases for legacy arg types
-   */
-    /**
-     * @deprecated Use UserCountOutputTypeDefaultArgs instead
-     */
-    export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use CarCountOutputTypeDefaultArgs instead
-     */
-    export type CarCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CarCountOutputTypeDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use UserDefaultArgs instead
-     */
-    export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use CarDefaultArgs instead
-     */
-    export type CarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CarDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use BookingDefaultArgs instead
-     */
-    export type BookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BookingDefaultArgs<ExtArgs>
-    /**
-     * @deprecated Use DamageReportDefaultArgs instead
-     */
-    export type DamageReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DamageReportDefaultArgs<ExtArgs>
+          export type UserCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserCountOutputTypeDefaultArgs<ExtArgs>
+        export type CarCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CarCountOutputTypeDefaultArgs<ExtArgs>
+        export type UserArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserDefaultArgs<ExtArgs>
+        export type CarArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = CarDefaultArgs<ExtArgs>
+        export type BookingArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BookingDefaultArgs<ExtArgs>
+        export type DamageReportArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = DamageReportDefaultArgs<ExtArgs>
 
-  /**
-   * Batch Payload for updateMany & deleteMany & createMany
-   */
-
+  
   export type BatchPayload = {
     count: number
   }
 
-  /**
-   * DMMF
-   */
-  export const dmmf: runtime.BaseDMMF
+    export const dmmf: runtime.BaseDMMF
 }

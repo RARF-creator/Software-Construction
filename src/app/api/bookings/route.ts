@@ -3,7 +3,7 @@ import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient();
 
-// GET /api/bookings?customerId=xxx
+
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const customerId = searchParams.get("customerId");
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
     }
 
-    // Use customerId from body if provided, otherwise fall back to the first seeded customer
+    
     let customerId = bodyCustomerId;
 
     if (!customerId) {

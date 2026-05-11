@@ -31,10 +31,6 @@ const Prisma = {}
 exports.Prisma = Prisma
 exports.$Enums = {}
 
-/**
- * Prisma Client JS version: 5.22.0
- * Query Engine version: 605197351a3c8bdd595af2d2a9bc3025bca48ea2
- */
 Prisma.prismaVersion = {
   client: "5.22.0",
   engine: "605197351a3c8bdd595af2d2a9bc3025bca48ea2"
@@ -48,24 +44,15 @@ Prisma.PrismaClientValidationError = PrismaClientValidationError
 Prisma.NotFoundError = NotFoundError
 Prisma.Decimal = Decimal
 
-/**
- * Re-export of sql-template-tag
- */
 Prisma.sql = sqltag
 Prisma.empty = empty
 Prisma.join = join
 Prisma.raw = raw
 Prisma.validator = Public.validator
 
-/**
-* Extensions
-*/
 Prisma.getExtensionContext = Extensions.getExtensionContext
 Prisma.defineExtension = Extensions.defineExtension
 
-/**
- * Shorthand utilities for JSON filtering
- */
 Prisma.DbNull = objectEnumValues.instances.DbNull
 Prisma.JsonNull = objectEnumValues.instances.JsonNull
 Prisma.AnyNull = objectEnumValues.instances.AnyNull
@@ -81,9 +68,6 @@ Prisma.NullTypes = {
 
   const path = require('path')
 
-/**
- * Enums
- */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
   Serializable: 'Serializable'
 });
@@ -154,9 +138,6 @@ exports.Prisma.ModelName = {
   Booking: 'Booking',
   DamageReport: 'DamageReport'
 };
-/**
- * Create the Client
- */
 const config = {
   "generator": {
     "name": "client",
@@ -239,9 +220,9 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
-// file annotations for bundling tools to include these files
+
 path.join(__dirname, "query_engine-windows.dll.node");
 path.join(process.cwd(), "src/generated/prisma/query_engine-windows.dll.node")
-// file annotations for bundling tools to include these files
+
 path.join(__dirname, "schema.prisma");
 path.join(process.cwd(), "src/generated/prisma/schema.prisma")
